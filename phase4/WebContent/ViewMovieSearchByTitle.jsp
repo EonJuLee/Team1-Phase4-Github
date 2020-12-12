@@ -79,8 +79,13 @@ if(mTitleSel.equals("including")){
 }else{
 	mTitle = " =\'"+mTitle+"\'";
 }
-
-String q = "select * from movie where title"+mTitle+" order by id";
+String q = "select id, title from movie"+
+		" where id not in"+
+		" (select distinct(mm.id)"+
+		" from movie mm, rating rr"+
+		" where mm.id = rr.movie_id and rr.account_id = "+userID+")"+
+		" and title"+mTitle+
+		" order by id asc";
 printTable(conn, q, out);
 %>
 <input type="button" value="Back to Previous Page" onclick="location.href='SearchMoviePage.jsp'"/>

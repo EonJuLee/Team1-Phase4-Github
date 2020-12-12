@@ -61,6 +61,14 @@ public void printTable(Connection conn, String q, JspWriter out){
 				else out.println(rs.getString(i));
 				out.println("</td>");
 			}
+			out.println("<td><form action=\"RateMovie.jsp\">");
+			out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			out.println("<select name=\"rating\">");
+			out.println("<option value=\"0\">0</option>");
+			for(int i=1;i<=10;i++) out.println("<option value\""+i+"\">"+i+"</option>");
+			out.println("</select>");
+			out.println("<input type=\"submit\" value=\"Rate\"/>");
+			out.println("</form></td>");
 			out.println("</tr>");
 		}
 		out.println("</table>");
@@ -82,6 +90,8 @@ function goBack() {
   window.history.back();
 }
 </script>
+<form action>
+</form>
 <input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </body>
 </html>

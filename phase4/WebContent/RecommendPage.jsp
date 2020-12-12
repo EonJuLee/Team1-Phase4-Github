@@ -97,6 +97,10 @@ if(uAge==null){
 			" from movie m, rating r, account a"+
 			" where m.id = r.movie_id and r.account_id=a.id"+
 			" and a.age/10 = "+Integer.parseInt(uAge)/10+
+			" and m.id not in"+
+			" (select distinct(mm.id)"+
+			" from movie mm, rating rr"+
+			" where mm.id = rr.movie_id and rr.account_id = "+userID+")"+
 			" group by m.id"+
 			" order by m.rating desc"+
 			" limit 10";
@@ -113,6 +117,10 @@ if(uAge==null){
 			" from movie m, rating r, account a"+
 			" where m.id = r.movie_id and r.account_id=a.id"+
 			" and a.age/10 = "+Integer.parseInt(uAge)/10+
+			" and m.id not in"+
+			" (select distinct(mm.id)"+
+			" from movie mm, rating rr"+
+			" where mm.id = rr.movie_id and rr.account_id = "+userID+")"+
 			" group by m.id"+
 			" order by count(*) desc"+
 			" limit 10";
@@ -125,6 +133,10 @@ if(uAge==null){
 	q = "select m.id, m.title, m.rating, count(*) as rated_number"+
 			" from movie m, rating r"+
 			" where m.id = r.movie_id"+
+					" and m.id not in"+
+					" (select distinct(mm.id)"+
+					" from movie mm, rating rr"+
+					" where mm.id = rr.movie_id and rr.account_id = "+userID+")"+
 			" group by m.id"+
 			" order by m.rating desc"+
 			" limit 10";
@@ -135,6 +147,10 @@ if(uAge==null){
 	q = "select m.id, m.title, count(*) as rated_number"+
 			" from movie m, rating r"+
 			" where m.id = r.movie_id"+
+					" and m.id not in"+
+					" (select distinct(mm.id)"+
+					" from movie mm, rating rr"+
+					" where mm.id = rr.movie_id and rr.account_id = "+userID+")"+
 			" group by m.id"+
 			" order by count(*) desc"+
 			" limit 10";
@@ -146,6 +162,10 @@ if(uAge==null){
 			" from movie m, rating r, is_in_genre i"+
 			" where m.id = r.movie_id"+
 			" and m.id=i.movie_id"+
+					" and m.id not in"+
+					" (select distinct(mm.id)"+
+					" from movie mm, rating rr"+
+					" where mm.id = rr.movie_id and rr.account_id = "+userID+")"+
 			" and i.genre_id=(select i.genre_id"+
 			" from movie m, is_in_genre i, rating r"+
 			" where m.id=i.movie_id"+
@@ -165,6 +185,10 @@ q = "select m.id, m.title, m.rating, count(*) as rated_number"+
 		" from movie m, rating r, is_in_genre i"+
 		" where m.id = r.movie_id"+
 		" and m.id=i.movie_id"+
+				" and m.id not in"+
+				" (select distinct(mm.id)"+
+				" from movie mm, rating rr"+
+				" where mm.id = rr.movie_id and rr.account_id = "+userID+")"+
 		" and i.genre_id=(select i.genre_id"+
 		" from movie m, is_in_genre i, rating r"+
 		" where m.id=i.movie_id"+

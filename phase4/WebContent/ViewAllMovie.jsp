@@ -76,7 +76,14 @@ public void printTable(Connection conn, String q, JspWriter out){
 }
 %>
 <%
-	printTable(conn, "select id, title from movie order by id asc", out);
+	String q = "select mm.id, mm.title from movie mm"+
+				" where mm.id not in"+
+				" (select distinct(m.id)"+
+				" from movie m, rating r"+
+				" where m.id = r.movie_id and r.account_id = "+userID+")"+
+				" order by mm.id asc";
+System.out.println(q);
+	printTable(conn, q, out);
 %>
 <input type="button" value="Back to Previous Page" onclick="location.href='MoviePage.jsp'"/><br/>
 </body>

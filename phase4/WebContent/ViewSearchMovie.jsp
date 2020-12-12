@@ -83,8 +83,13 @@ String[] seltype=request.getParameterValues("type");
 String[] selgenre=request.getParameterValues("genre");
 String[] selversion=request.getParameterValues("version");
 
-String q = "select m.id, m.title, m.movie_type, g.name, v.country from movie m, version v, is_in_genre i, genre g"
-        + " where m.id=i.movie_id and v.movie_id = m.id and g.id=i.genre_id";
+String q = "select m.id, m.title, m.movie_type, g.name, v.country from movie m, version v, is_in_genre i, genre g"+
+           " where m.id=i.movie_id and v.movie_id = m.id and g.id=i.genre_id"+
+			" and m.id not in"+
+			" (select distinct(mm.id)"+
+			" from movie mm, rating rr"+
+			" where mm.id = rr.movie_id and rr.account_id = "+userID+")";
+		
 boolean chk = false;
 if(seltype!=null){
 	q += " and (";
