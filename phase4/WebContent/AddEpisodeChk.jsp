@@ -70,7 +70,7 @@
 	
 	
 	// 2. Add new version
-	String q = String sql = "insert into episode values(" + movie_id + ", " + episode_id + ", " + season + ", " + epnum + ", '"
+	String q = "insert into episode values(" + movie_id + ", " + episode_id + ", " + season + ", " + epnum + ", '"
             + eptitle + "', " + runtime + ", " + "to_date('" + upload_date + "','yyyy-mm-dd'))";
 	// System.out.println(q);
 

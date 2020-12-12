@@ -36,7 +36,7 @@
 %>
 <%
 	//0. get stored_start_year, stored_end_year
-	String stored_start_year=0, stored_end_year=0;
+	String stored_start_year="0", stored_end_year="0";
 	try {
 	    String sql = "select start_year, end_year from movie where id=" + movie_id;
 	    ResultSet rs = stmt.executeQuery(sql);
@@ -64,16 +64,20 @@
 		upload_date="to_date('" + upload_date + "', 'yyyy-mm-dd')";
 	}
 	if(Integer.parseInt(stored_start_year)>Integer.parseInt(end_year)) {
+		%>
 		<script>
 	     	alert("end year is before than start year in the database");
 	     	location.href = "EditMoviePage.jsp"
         </script>
+        <%
 	}
 	if(Integer.parseInt(start_year)>Integer.parseInt(end_year)&&!start_year.equals("")) {
+		%>
 		<script>
 	     	alert("end year is before than start year now");
 	     	location.href = "EditMoviePage.jsp"
     </script>
+    <%
 	}
 	
 	// keys and values

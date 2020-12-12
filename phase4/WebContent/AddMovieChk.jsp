@@ -39,7 +39,7 @@
 	
 	// 1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
-	int id=0;
+	int tid=0;
 	String title = request.getParameter("title");
 	String type = request.getParameter("type");
 	String runtime = request.getParameter("runtime");
@@ -62,7 +62,7 @@
         String sql = "select max(id) from movie";
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()) {
-            id = rs.getInt(1) + 1;
+            tid = rs.getInt(1) + 1;
         }
         rs.close();
 
@@ -76,7 +76,7 @@
     }
 	
 	
-	String q = "insert into movie values(" + id + ", '" + type + "', '" + title + "', " + runtime + ", "
+	String q = "insert into movie values(" + tid + ", '" + type + "', '" + title + "', " + runtime + ", "
             + start_year + ", " + (flag == true ? "null" : end_year) + ", " + "to_date('" + upload_date
             + "','yyyy-mm-dd'), " + rating + ", '" + language + "')";
 	// System.out.println(q);

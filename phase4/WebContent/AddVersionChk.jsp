@@ -9,6 +9,7 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
+	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
@@ -78,7 +79,7 @@
 	
 	// 2. Add new version
 	String q = "insert into version values(" + movie_id + ", " + "'" + country + "', '" + title + "', '"
-            + lang + "', " + "to_date('" + upload_date + "','yyyy-mm-dd'), " + start_year + ", "
+            + language + "', " + "to_date('" + upload_date + "','yyyy-mm-dd'), " + start_year + ", "
             + (flag == true ? "null" : end_year) + ")";
 	// System.out.println(q);
 
