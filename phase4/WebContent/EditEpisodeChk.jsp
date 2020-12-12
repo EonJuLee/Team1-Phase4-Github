@@ -1,0 +1,174 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page language="java" import="java.text.*, java.sql.*, phase4.JavaFile" %>
+<!DOCTYPE html>
+<%
+	// get variables from account page
+	String id = (String) session.getAttribute("id");
+	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+	int userID = (int) session.getAttribute("userID");
+	String movie_id=(String)session.getAttribute("movie_id");
+	String episode_id=(String)session.getAttribute("episode_id");
+	
+	// to give attributes to other pages
+	session.setAttribute("id", id);
+	session.setAttribute("isAdmin", isAdmin);
+	session.setAttribute("userID", userID);
+	session.setAttribute("movie_id",movie_id);
+	session.setAttribute("episode_id",episode_id);
+%>
+
+<%
+	String url = "jdbc:postgresql://localhost/jsy";
+	String DBid = "jsy";
+	String DBpw = "jsy";
+	
+	Connection conn = null;
+	Statement stmt = null;
+	
+	try {
+	    Class.forName("org.postgresql.Driver");
+	    conn = DriverManager.getConnection(url, DBid, DBpw);
+	    conn.setAutoCommit(false);
+	    stmt = conn.createStatement();
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    System.err.println("ERROR : failed login postgresql");
+	}
+%>
+<%
+	//0. get stored_start_year, stored_end_year
+	String stored_start_year="0", stored_end_year="0";
+	try {
+		String sql = "select * from episode where movie_id=" + movie_id + " and id=" + episode_id;
+	    ResultSet rs = stmt.executeQuery(sql);
+	    if (rs.next()) {
+	        stored_start_year=rs.getString(1);
+	        stored_end_year=rs.getString(2);
+	    } 
+	    rs.close();
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+
+	
+	//1. initialize variables
+	request.setCharacterEncoding("EUC-KR");
+	String title = request.getParameter("title");
+	String season = request.getParameter("season");
+	String epnum = request.getParameter("epnum");
+	String runtime = request.getParameter("runtime");
+	String upload_date = request.getParameter("upload_date");
+	String start_year=upload_date.substring(0,4);
+	
+	if(!upload_date.equals("")) {
+		upload_date="to_date('" + upload_date + "', 'yyyy-mm-dd')";
+	}
+	if(Integer.parseInt(stored_start_year)>Integer.parseInt(end_year)) {
+		%>
+		<script>
+	     	alert("end year is before than start year in the database");
+	     	location.href = "EditEpisodePage.jsp"
+        </script>
+        <%
+	}
+	if(Integer.parseInt(start_year)>Integer.parseInt(end_year)&&!start_year.equals("")) {
+		%>
+		<script>
+	     	alert("end year is before than start year now");
+	     	location.href = "EditEpisodePage.jsp"
+	    </script>
+    <%
+	}
+	
+	// keys and values
+	String[] keys = { "id", "season", "epnum", "eptitle", "runtime", "upload_date" };
+	String[] inputs=new String[keys.length];
+	
+	
+	// set values in the input array
+	if(season.equals("")) {
+		inputs[1]="";
+	}
+	else {
+		inputs[1]=season;
+	}
+	
+	if(epnum.equals("")) {
+		inputs[2]="";
+	}
+	else {
+		inputs[2]=epnum;
+	}
+	
+	if(eptitle.equals("")) {
+		inputs[3]="";
+	}
+	else {
+		inputs[3]="'"+eptitle+"'";
+	}
+	
+	if(runtime.equals("")) {
+		inputs[4]="";
+	}
+	else {
+		inputs[4]="'"+eptitle+"'";
+	}
+	
+	
+	if(start_year.equals("")) {
+		inputs[5]="";
+	}
+	else {
+		inputs[5]="to_date('"+upload_date+"','yyyy-mm-dd')";
+	}
+	
+	// update
+	try {
+        boolean added = false;
+        String sql = "update episode set ";
+
+        for (int i = 1; i < inputs.length; i++) {
+            if (inputs[i].equals("")) {
+                continue;
+            } else {
+                if (added == false)
+                    added = true;
+                else
+                    sql += ", ";
+                sql += keys[i] + "=" + inputs[i];
+            }
+        }
+        sql += " where movie_id=" + movie_id + " and id=" + episode_id + "";
+
+        if (added == false) {
+        	%>
+        	<script>
+            	alert("No extra information provided");
+            	location.href = "EpisodeInfoPage.jsp"
+            </script>
+            <%
+        } else {
+            int res = stmt.executeUpdate(sql);
+            if (res > 0) {
+            	conn.commit();
+            	%>
+            	<script>
+                	alert("You successfully updated episode");
+                	location.href = "EpisodeInfoPage.jsp"
+                </script>
+                <%       
+            } else {
+            	%>
+            	<script>
+                	alert("You failed to update episode");
+                	location.href = "AdminPage.jsp"
+                </script>
+                <%
+            }
+        }
+	} catch (Exception e) {
+        e.printStackTrace();
+	}
+
+%>

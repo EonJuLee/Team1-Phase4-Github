@@ -89,13 +89,13 @@
 <h3>Enter new version of movie information</h3>
 Version Title : <input type="text" name="title">
 <br/>
-Movie Country : <input type="text" name="country">
+Version Country : <input type="text" name="country">
 <br/>
-Movie Start date (YYYY-MM-DD) : <input type="text" name="upload_date">
+Version Start date (YYYY-MM-DD) : <input type="text" name="upload_date">
 <br/>
-Movie End year : <input type="number" name="end_year">
+Version End year : <input type="number" name="end_year">
 <br/>
-Movie Language : <input type="text" name="language">
+Version Language : <input type="text" name="language">
 <br/>
 
 <input type="submit" value="Add new Version">

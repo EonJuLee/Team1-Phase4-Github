@@ -39,7 +39,7 @@
 			return false;
 		}
 		if(!document.MovieInfo.upload_date.value) {
-			alert("please enter start date of movie version");
+			alert("please enter start date of movie episode");
 			return false;
 		}
 		if(!isValidDate(document.MovieInfo.upload_date.value)) {
