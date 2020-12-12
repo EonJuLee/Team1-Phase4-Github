@@ -52,7 +52,6 @@
 	
 	//1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
-	int id=0;
 	String title = request.getParameter("title");
 	String type = request.getParameter("type");
 	String runtime = request.getParameter("runtime");
@@ -77,55 +76,9 @@
     </script>
 	}
 	
-	// 여기서부터해야함
 	// keys and values
 	String[] keys = { "ID", "Movie_type", "Title", "Runtime", "Start_year", "End_year", "Upload_date", "Language" };
 	String[] inputs=new String[keys.length];
 	
-	// 2. set new movie id
-	try {
-     String sql = "select max(id) from movie";
-     ResultSet rs = stmt.executeQuery(sql);
-     while (rs.next()) {
-         id = rs.getInt(1) + 1;
-     }
-     rs.close();
-
- } catch (Exception e) {
- 	%>
- 	<script>
-     	alert("Check the server connection");
-     	location.href = "AdminPage.jsp"
-     </script>
-     <%
- }
-	
-	
-	String q = "insert into movie values(" + id + ", '" + type + "', '" + title + "', " + runtime + ", "
-         + start_year + ", " + (flag == true ? "null" : end_year) + ", " + "to_date('" + upload_date
-         + "','yyyy-mm-dd'), " + rating + ", '" + language + "')";
-	// System.out.println(q);
-
-	try{
-		int res = stmt.executeUpdate(q);
-	   if (res > 0) {
-	    	conn.commit();
-		%>
-	    	<script>
-	        	alert("You successfully add new movie.");
-	        	location.href = "AdminPage.jsp"
-	        </script>
-	     <%
-	    }else {
-	    	%>
-	    	<script>
-	    		alert("You failed to add new movie.");
-	    		location.href = "AddMoviePage.jsp"
-	    	</script>
-	    <%	
-	    }
-	}catch(Exception e){
-		e.printStackTrace();
-	}
 
 %>

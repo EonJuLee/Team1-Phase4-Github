@@ -9,12 +9,13 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
+	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	
+	session.setAttribute("movie_id",movie_id);
 %>
 
 <%
@@ -40,8 +41,8 @@
 	
 	// 1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
-	int id=0;
-	String title = request.getParameter("title");
+	int episode_id=0;
+	String eptitle = request.getParameter("title");
 	String season = request.getParameter("season");
 	String epnum = request.getParameter("epnum");
 	String upload_date = request.getParameter("upload_date");
@@ -54,7 +55,7 @@
 		String sql = "select max(id) from episode";
         ResultSet rs = stmt.executeQuery(sql);
         if (rs.next()) {
-        	 id = rs.getInt(1) + 1;
+        	 episode_id = rs.getInt(1) + 1;
         }
         rs.close();
     } catch (Exception e) {
@@ -69,7 +70,7 @@
 	
 	
 	// 2. Add new version
-	String q = String sql = "insert into episode values(" + movie_id + ", " + id + ", " + season + ", " + epnum + ", '"
+	String q = String sql = "insert into episode values(" + movie_id + ", " + episode_id + ", " + season + ", " + epnum + ", '"
             + eptitle + "', " + runtime + ", " + "to_date('" + upload_date + "','yyyy-mm-dd'))";
 	// System.out.println(q);
 
