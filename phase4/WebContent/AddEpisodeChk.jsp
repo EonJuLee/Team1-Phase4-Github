@@ -41,7 +41,7 @@
 	// 1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
 	int episode_id=0;
-	String eptitle = request.getParameter("title");
+	String eptitle = request.getParameter("eptitle");
 	String season = request.getParameter("season");
 	String epnum = request.getParameter("epnum");
 	String upload_date = request.getParameter("upload_date");
@@ -80,7 +80,7 @@
 		%>
 	    	<script>
 	        	alert("You successfully add new episode of movie.");
-	        	location.href = "AdminPage.jsp"
+	        	location.href = "EpisodeInfoPage.jsp?mID="+<%=movie_id%>
 	        </script>
 	     <%
 	    }else {

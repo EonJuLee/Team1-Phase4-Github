@@ -70,7 +70,7 @@
 	       String tid=rs.getString(2);
 	        
 	       out.println("<tr>");
-	       for(int i=1;i<column_count;i++) {
+	       for(int i=2;i<=column_count;i++) {
 	     	 	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
 	       out.println("<td><form action=\"EditEpisodePage.jsp\">");
