@@ -37,6 +37,7 @@
 <%
 	try {
 		String sql = "delete from episode where movie_id=" + movie_id + " and id=" + episode_id;
+		System.out.println(sql);
 	    int res = stmt.executeUpdate(sql);
 	    if (res > 0) {
 	        conn.commit();

@@ -37,7 +37,7 @@
 <%
 	//1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
-	String eptitle = request.getParameter("title");
+	String eptitle = request.getParameter("eptitle");
 	String season = request.getParameter("season");
 	String epnum = request.getParameter("epnum");
 	String runtime = request.getParameter("runtime");
@@ -74,7 +74,7 @@
 		inputs[4]="";
 	}
 	else {
-		inputs[4]="'"+eptitle+"'";
+		inputs[4]=runtime;
 	}
 	
 	
@@ -117,7 +117,7 @@
             	%>
             	<script>
                 	alert("You successfully updated episode");
-                	location.href = "EpisodeInfoPage.jsp"
+                	location.href = "EpisodeInfoPage.jsp?mID="+<%=movie_id%>;
                 </script>
                 <%       
             } else {

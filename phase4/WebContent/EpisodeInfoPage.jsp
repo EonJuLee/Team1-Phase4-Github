@@ -70,7 +70,7 @@
 	       String tid=rs.getString(2);
 	        
 	       out.println("<tr>");
-	       for(int i=2;i<column_count;i++) {
+	       for(int i=1;i<column_count;i++) {
 	     	 	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
 	       out.println("<td><form action=\"EditEpisodePage.jsp\">");
@@ -80,7 +80,7 @@
 			 out.println("</form></td>");
 			 out.println("<td><form action=\"DeleteEpisodePage.jsp\">");
 			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
-			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(2)+"\" />");
+			 out.println("<input type=\"hidden\" name=\"eID\" value=\""+rs.getString(2)+"\" />");
 			 out.println("<input type=\"submit\" value=\"Delete\"/>");
 			 out.println("</form></td>");
 	       out.println("</tr>");
@@ -108,7 +108,12 @@ out.println("<input type=\"submit\" value=\"Add\"/>");
 out.println("</form>");
 %>
 <br/>
-<input type="button" value="Back to List" onclick="goViewAllTV()">
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="location.href='ViewAllTV.jsp'"/>
 
 </body>
 </html>
