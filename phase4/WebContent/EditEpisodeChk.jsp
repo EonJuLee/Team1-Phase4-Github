@@ -37,21 +37,6 @@
 	}
 %>
 <%
-	//0. get stored_start_year, stored_end_year
-	String stored_start_year="0", stored_end_year="0";
-	try {
-		String sql = "select * from episode where movie_id=" + movie_id + " and id=" + episode_id;
-	    ResultSet rs = stmt.executeQuery(sql);
-	    if (rs.next()) {
-	        stored_start_year=rs.getString(1);
-	        stored_end_year=rs.getString(2);
-	    } 
-	    rs.close();
-	} catch (Exception e) {
-	    e.printStackTrace();
-	}
-
-	
 	//1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
 	String title = request.getParameter("title");
@@ -61,30 +46,9 @@
 	String upload_date = request.getParameter("upload_date");
 	String start_year=upload_date.substring(0,4);
 	
-	if(!upload_date.equals("")) {
-		upload_date="to_date('" + upload_date + "', 'yyyy-mm-dd')";
-	}
-	if(Integer.parseInt(stored_start_year)>Integer.parseInt(end_year)) {
-		%>
-		<script>
-	     	alert("end year is before than start year in the database");
-	     	location.href = "EditEpisodePage.jsp"
-        </script>
-        <%
-	}
-	if(Integer.parseInt(start_year)>Integer.parseInt(end_year)&&!start_year.equals("")) {
-		%>
-		<script>
-	     	alert("end year is before than start year now");
-	     	location.href = "EditEpisodePage.jsp"
-	    </script>
-    <%
-	}
-	
 	// keys and values
 	String[] keys = { "id", "season", "epnum", "eptitle", "runtime", "upload_date" };
 	String[] inputs=new String[keys.length];
-	
 	
 	// set values in the input array
 	if(season.equals("")) {

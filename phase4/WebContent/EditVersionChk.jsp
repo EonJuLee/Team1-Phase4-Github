@@ -61,9 +61,6 @@
 	String end_year = request.getParameter("end_year");
 	String start_year=upload_date.substring(0,4);
 	
-	if(!upload_date.equals("")) {
-		upload_date="to_date('" + upload_date + "', 'yyyy-mm-dd')";
-	}
 	if(Integer.parseInt(stored_start_year)>Integer.parseInt(end_year)) {
 		%>
 		<script>
