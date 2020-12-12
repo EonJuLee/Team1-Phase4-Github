@@ -7,7 +7,27 @@
 </head>
 <body>
 <h1>Log in</h1>
-<form action="EditProfileChk.jsp" method="post">
+<script type="text/javascript">
+	function checkValue() {
+		if(!document.userInfo.fname) {
+			alert("please enter your first name");
+			return false;
+		}
+		if(!document.userInfo.lname) {
+			alert("please enter your last name");
+			return false;
+		}
+		if(!document.userInfo.contact) {
+			alert("please enter your contact number");
+			return false;
+		}
+	}
+	
+	function goMainPage() {
+		location.href="MainPage.jsp";
+	}
+</script>
+<form action="EditProfileChk.jsp" method="post" name="userInfo" onsubmit="return checkValue()">
 <%
 	// user information
 	String[] columns = { "gender", "birthdate", "address", "contact", "job", "fname", "middle", "lname" };
@@ -20,7 +40,7 @@
 %>
 <input type="submit" value="Edit">
 <br/>
-<input type="button" value="Back to First Page" onclick="location.href='MainPage.jsp'"/>
+<input type="button" value="Back to First Page" onclick="goMainPage()"/>
 </form>
 </body>
 </html>
