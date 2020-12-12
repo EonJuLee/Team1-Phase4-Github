@@ -9,6 +9,39 @@
 
 <body>
 
+<%
+	// get variables from account page
+	String id = (String) session.getAttribute("id");
+	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+	int userID = (int) session.getAttribute("userID");
+	String movie_id=(String)session.getAttribute("movie_id");
+	
+	// to give attributes to other pages
+	session.setAttribute("id", id);
+	session.setAttribute("isAdmin", isAdmin);
+	session.setAttribute("userID", userID);
+	session.setAttribute("movie_id",movie_id);
+%>
+
+<%
+	String url = "jdbc:postgresql://localhost/jsy";
+	String DBid = "jsy";
+	String DBpw = "jsy";
+	
+	Connection conn = null;
+	Statement stmt = null;
+	
+	try {
+	    Class.forName("org.postgresql.Driver");
+	    conn = DriverManager.getConnection(url, DBid, DBpw);
+	    conn.setAutoCommit(false);
+	    stmt = conn.createStatement();
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    System.err.println("ERROR : failed login postgresql");
+}
+%>
+
 <!-- For check value in movies -->
 <script type="text/javascript">
 	function checkValue() {
@@ -34,17 +67,26 @@
 		}
 	}
 	
-	function goAdminPage() {
-		location.href="AdminPage.jsp";
+	function goVersionInfoPage() {
+		session.setAttribute("movie_id", movie_id);
+		location.href="VersionInfoPage.jsp";
 	}
+	
+	function isValidDate(date) {
+	      var valid_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+	      if(!valid_pattern.test(date)){
+	         return false;
+	      }
+	      return true;
+	}
+	
 </script>
-
 
 <!-- Form starts here -->
 <form action="AddVersionChk.jsp" method="post" name="MovieInfo" onsubmit="return checkValue()">
-<h2>Add new Movie</h2>
 
-<%-- Info for movie --%>
+<h2>Add new Version</h2>	
+<h3>Enter new version of movie information</h3>
 Version Title : <input type="text" name="title">
 <br/>
 Movie Country : <input type="text" name="country">
@@ -58,7 +100,7 @@ Movie Language : <input type="text" name="language">
 
 <input type="submit" value="Add new Version">
 <br/>
-<input type="submit" value="Back to previous Page" onclick="goAdminPage()">
+<input type="submit" value="Back to List" onclick="goVersionInfoPage()">
 </form>
 <!-- Form ends here -->
 

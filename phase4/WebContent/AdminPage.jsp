@@ -22,20 +22,10 @@
 %>
 
 
-<%-- Add new movies --%>
-<input type="button" value="Add new Movie" onclick="location.href='AddMoviePage.jsp'"/>
+<%-- Add & Edit movies --%>
+<input type="button" value="Movie & Version Management" onclick="location.href='ViewAllMovie.jsp'"/>
 <br/>
-<input type="button" value="Add new Version" onclick="location.href='AddVersionPage.jsp'"/>
-<br/>
-<input type="button" value="Add new Episode" onclick="location.href='AddEpisodePage.jsp'"/>
-<br/>
-
-<%-- Edit movies --%>
-<input type="button" value="Edit Movie Information" onclick="location.href='EditMoviePage.jsp'"/>
-<br/>
-<input type="button" value="Edit Version Information" onclick="location.href='EditVersionPage.jsp'"/>
-<br/>
-<input type="button" value="Edit Episode Information" onclick="location.href='EditEpisodePage.jsp'"/>
+<input type="button" value="Episode Management" onclick="location.href='ViewAllTV.jsp'"/>
 <br/>
 <input type="button" value="Back to Previous Page" onclick="location.href='MainPage.jsp'"/>
 </body>

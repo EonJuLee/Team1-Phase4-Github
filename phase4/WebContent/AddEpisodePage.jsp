@@ -9,6 +9,20 @@
 
 <body>
 
+<%
+	// get variables from account page
+	String id = (String) session.getAttribute("id");
+	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+	int userID = (int) session.getAttribute("userID");
+	String movie_id=(String)session.getAttribute("movie_id");
+	
+	// to give attributes to other pages
+	session.setAttribute("id", id);
+	session.setAttribute("isAdmin", isAdmin);
+	session.setAttribute("userID", userID);
+	session.setAttribute("movie_id",movie_id);
+%>
+
 <!-- For check value in movies -->
 <script type="text/javascript">
 	function checkValue() {
@@ -38,9 +52,18 @@
 		}
 	}
 	
-	function goAdminPage() {
-		location.href="AdminPage.jsp";
+	function goEpisodeInfoPage() {
+		session.setAttribute("movie_id", movie_id);
+		location.href="EpisodeInfoPage.jsp";
 	}
+	
+	function isValidDate(date) {
+	      var valid_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+	      if(!valid_pattern.test(date)){
+	         return false;
+	      }
+	      return true;
+	   }
 </script>
 
 
@@ -57,14 +80,12 @@ Episode number : <input type="text" name="epnum">
 <br/>
 Episode Start date (YYYY-MM-DD) : <input type="text" name="upload_date">
 <br/>
-Episode End year : <input type="number" name="end_year">
-<br/>
-Movie runtime : <input type="text" name="runtime">
+Episode runtime : <input type="text" name="runtime">
 <br/>
 
 <input type="submit" value="Add new Episode">
 <br/>
-<input type="submit" value="Back to previous Page" onclick="goAdminPage()">
+<input type="submit" value="Back to List" onclick="goEpisodeInfoPage()">
 </form>
 <!-- Form ends here -->
 
