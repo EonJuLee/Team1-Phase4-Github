@@ -1,14 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*, phase4.JavaFile" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 </head>
 <body>
-<h1>All Ratings</h1>
-
 <%
 	// get variables from account page
 	String id = (String) session.getAttribute("id");
@@ -20,9 +18,6 @@
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
 %>
-
-<!-- For check value in password -->
-
 <%
 	String url = "jdbc:postgresql://localhost/jsy";
 	String DBid = "jsy";
@@ -41,48 +36,47 @@
 	    System.err.println("ERROR : failed login postgresql");
 	}
 %>
-
-<%
-	String sql = "select m.title, a.login_id, r.rating from movie m, rating r, account a "
-			   + "where r.movie_id=m.id and r.account_id=a.id";
-	PreparedStatement pstmt = null;
+<%!
+public void printTable(Connection conn, String q, JspWriter out){
 	ResultSet rs = null;
-	try {
-		pstmt=conn.prepareStatement(sql);
-		rs=pstmt.executeQuery();
-		
+	PreparedStatement pstmt = null;
+	try{
+		pstmt = conn.prepareStatement(q);
+		rs = pstmt.executeQuery();
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	try{
 		out.println("<table border=\"1\">");
-		ResultSetMetaData rsmd=rs.getMetaData();
-		
-		int cnt=rsmd.getColumnCount();
-		for(int i=1;i<=cnt;i++){
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int sz = rsmd.getColumnCount();
+		for(int i=1;i<=sz;i++){
 			out.println("<th>"+rsmd.getColumnName(i)+"</th>");
 		}
-		
 		while(rs.next()){
 			out.println("<tr>");
-			
-			String title=rs.getString(1);
-			float rating=rs.getFloat(3);
-			
-			 if (title.length() >= 30)
-	             title = title.substring(0, 25) + "...";
-			
-			out.println("<td>"+title+"</td>");
-			out.println("<td>"+rs.getString(2)+"</td>");
-			out.println("<td>"+rating+"</td>");
+			for(int i=1;i<=sz;i++){
+				out.print("<td>");
+				if(rsmd.getColumnName(i).equals("HOURS")) out.println(String.format("%.1f", rs.getFloat(i)));
+				else out.println(rs.getString(i));
+				out.println("</td>");
+			}
+			out.println("<td><form action=\"ViewMovieDetail.jsp\">");
+			out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			out.println("<input type=\"submit\" value=\"View Detail\"/>");
+			out.println("</form></td>");
 			out.println("</tr>");
 		}
-		
 		out.println("</table>");
 		rs.close();
-		pstmt.close();
-		conn.close();
-	}
-	catch(Exception e) {
 		
+	}catch(Exception e){
+		e.printStackTrace();
 	}
+}
 %>
-<input type="button" value="Back to Rating Page" onclick="location.href='RatingPage.jsp'"/>
+<%
+	printTable(conn, "select id, title from movie order by id asc", out);
+%>
 </body>
 </html>
