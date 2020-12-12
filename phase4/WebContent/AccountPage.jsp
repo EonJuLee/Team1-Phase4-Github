@@ -21,6 +21,8 @@
 	session.setAttribute("userID", userID);
 %>
 
+
+
 <%-- Jsp for Account Page --%>
 <input type="button" value="Edit Account Profile" onclick="location.href='EditProfilePage.jsp'"/>
 <br/>
