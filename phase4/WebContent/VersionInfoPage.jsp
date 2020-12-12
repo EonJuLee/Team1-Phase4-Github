@@ -14,13 +14,11 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
 %>
 
 <%
@@ -48,25 +46,12 @@
 		location.href="ViewAllMovieInfo.jsp";
 	}
 	
-	function goAddVersionPage(movie_id) {
-		session.setAttribute("movie_id", movie_id);
-		location.href="AddVersionPage.jsp";
-	}
-	
-	function goEditVersionPage(country) {
-		session.setAttribute("country", country);
-		location.href="EditVersionPage.jsp";
-	}
-	
-	function goDeleteVersionPage(country) {
-		session.setAttribute("country", country);
-		location.href="DeleteVersionPage.jsp";
-	}
 </script>
 
 <!-- Form starts here -->
 <h2>Version Information</h2>
 <% 
+	String movie_id = request.getParameter("mID");
 	try {
 	    String sql = "select * from version where movie_id=" + movie_id;
 	    boolean flag= false;
@@ -76,7 +61,7 @@
 	    int column_count=rsmd.getColumnCount();
 	    
 	    // print header of table
-	    for(int i=2;i<=column_count;i++) {
+	    for(int i=2;i<column_count;i++) {
 	    	out.println("<th>"+rsmd.getColumnName(i)+"</th>");
 	    }
 	    
@@ -88,8 +73,16 @@
 	        for(int i=2;i<column_count;i++) {
 	        	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditVersionPage(country)'/>"+"</td>");
-	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteVersionPage(country)'/>"+"</td>");
+	        out.println("<td><form action=\"EditVersionPage.jsp\">");
+			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+movie_id+"\" />");
+			 out.println("<input type=\"hidden\" name=\"country\" value=\""+country+"\" />");
+			 out.println("<input type=\"submit\" value=\"Edit\"/>");
+			 out.println("</form></td>");
+			 out.println("<td><form action=\"DeleteVersionPage.jsp\">");
+			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+movie_id+"\" />");
+			 out.println("<input type=\"hidden\" name=\"country\" value=\""+country+"\" />");
+			 out.println("<input type=\"submit\" value=\"Delete\"/>");
+			 out.println("</form></td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();
@@ -108,9 +101,16 @@
 %>
 
 <%-- Info for movie --%>
-<input type='button' value='Add' onClick='goAddVersionPage(movie_id)'/>
-<br/>
-<input type="button" value="Back to List" onclick="goViewAllMoviePage()">
+<%
+out.println("<form action=\"AddVersionPage.jsp\">");
+out.println("<input type=\"hidden\" name=\"mID\" value=\""+movie_id+"\" />");
+out.println("<input type=\"submit\" value=\"Add\"/>");
+out.println("</form>");
+out.println("<br/>");
+out.println("<form action=\"ViewAllMovieInfo.jsp\">");
+out.println("<input type=\"submit\" value=\"Back to List\"/>");
+out.println("</form>");
+%>
 
 </body>
 </html>

@@ -7,15 +7,13 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
-	String country=(String)session.getAttribute("country");
+	String movie_id=request.getParameter("mID");
+	String country=request.getParameter("country");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
-	session.setAttribute("country",country);
 %>
 
 <%
@@ -45,7 +43,7 @@
 	        %>
 			<script>
 		     	alert("You successfully deleted version of Movie");
-		     	location.href = "VersionInfoPage.jsp"
+		     	location.href = "VersionInfoPage.jsp?mID="+<%=movie_id%>;
 		    </script>
 	    <%
 	    } else {

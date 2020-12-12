@@ -7,13 +7,11 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
 %>
 
 <%
@@ -36,9 +34,12 @@
 %>
 <%
 	//0. get stored_start_year, stored_end_year
+	String movie_id = request.getParameter("mID");
+	
 	String stored_start_year="0", stored_end_year="0";
 	try {
 	    String sql = "select start_year, end_year from movie where id=" + movie_id;
+	    System.out.println(sql);
 	    ResultSet rs = stmt.executeQuery(sql);
 	    if (rs.next()) {
 	        stored_start_year=rs.getString(1);
@@ -49,7 +50,6 @@
 	    e.printStackTrace();
 	}
 
-	
 	//1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
 	String title = request.getParameter("title");
@@ -59,8 +59,9 @@
 	String upload_date = request.getParameter("upload_date");
 	String end_year = request.getParameter("end_year");
 	String start_year=upload_date.substring(0,4);
-	
-	if(Integer.parseInt(stored_start_year)>Integer.parseInt(end_year)) {
+	System.out.println(stored_start_year);
+	System.out.println(end_year);
+	if(!end_year.equals("") && Integer.parseInt(stored_start_year)>Integer.parseInt(end_year) && start_year.equals("")) {
 		%>
 		<script>
 	     	alert("end year is before than start year in the database");
@@ -68,7 +69,7 @@
         </script>
         <%
 	}
-	if(Integer.parseInt(start_year)>Integer.parseInt(end_year)&&!start_year.equals("")) {
+	if(!start_year.equals("") && !end_year.equals("") && Integer.parseInt(start_year)>Integer.parseInt(end_year)) {
 		%>
 		<script>
 	     	alert("end year is before than start year now");
@@ -78,7 +79,7 @@
 	}
 	
 	// keys and values
-	String[] keys = { "ID", "Movie_type", "Title", "Runtime", "Start_year", "End_year", "Upload_date", "Language" };
+	String[] keys = { "ID", "Movie_type", "Title", "Runtime", "Start_year", "End_year", "Upload_date", "Lang" };
 	String[] inputs=new String[keys.length];
 	
 	
@@ -145,7 +146,7 @@
             }
         }
         sql += " where id=" + movie_id;
-
+		System.out.println(sql);
         if (added == false) {
         	%>
         	<script>

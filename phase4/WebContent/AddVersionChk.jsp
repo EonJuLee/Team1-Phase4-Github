@@ -9,7 +9,6 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
@@ -41,6 +40,7 @@
 	
 	// 1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
+	String movie_id=request.getParameter("mID");
 	String title = request.getParameter("title");
 	String country = request.getParameter("country");
 	String language = request.getParameter("language");

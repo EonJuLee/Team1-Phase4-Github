@@ -21,18 +21,6 @@
 	function goAddMoviePage() {
 		location.href="AddMoviePage.jsp";
 	}
-	function goVersionInfoPage(movie_id) {
-		location.href="VersionInfoPage.jsp";
-		session.setAttribute("movie_id", movie_id);
-	}
-	function goEditMoviePage(movie_id) {
-		location.href="EditMoviePage.jsp";
-		session.setAttribute("movie_id", movie_id);
-	}
-	function goDeleteMoviePage(movie_id) {
-		location.href="DeleteMoviePage.jsp";
-		session.setAttribute("movie_id", movie_id);
-	}
 </script>
 
 <%
@@ -80,9 +68,18 @@
 	        
 	        out.println("<td>"+tid+"</td>");
 	        out.println("<td>"+title+"</td>");
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditMoviePage("+tid+")'/>"+"</td>");
-	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteMoviePage("+tid+")'/>"+"</td>");
-	        out.println("<td>"+"<input type='button' value='Version Info' onClick='goVersionInfoPage("+tid+")'/>"+"</td>");
+	        out.println("<td><form action=\"EditMoviePage.jsp\">");
+			out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			out.println("<input type=\"submit\" value=\"Edit\"/>");
+			out.println("</form></td>");
+			out.println("<td><form action=\"DeleteMoviePage.jsp\">");
+			out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			out.println("<input type=\"submit\" value=\"Delete\"/>");
+			out.println("</form></td>");
+			out.println("<td><form action=\"VersionInfoPage.jsp\">");
+			out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			out.println("<input type=\"submit\" value=\"Version Info\"/>");
+			out.println("</form></td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();

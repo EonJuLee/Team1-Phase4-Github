@@ -14,13 +14,11 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
 %>
 
 <%
@@ -47,26 +45,12 @@
 	function goViewAllTVPage() {
 		location.href="ViewAllTV.jsp";
 	}
-	
-	function goAddEpisodePage(movie_id) {
-		session.setAttribute("movie_id", movie_id);
-		location.href="AddEpisodePage.jsp";
-	}
-	
-	function goEditEpisodePage(id) {
-		session.setAttribute("episode_id",id);
-		location.href="EditEpisodePage.jsp";
-	}
-	
-	function goDeleteEpisodePage(id) {
-		session.setAttribute("episode_id",id);
-		location.href="DeleteEpisodePage.jsp";
-	}
 </script>
 
 <!-- Form starts here -->
 <h2>Episode Information</h2>
 <% 
+	String movie_id = request.getParameter("mID");
 	try {
 	    String sql = "select * from episode where movie_id=" + movie_id;
 	    System.out.println(sql);
@@ -82,16 +66,22 @@
 	    }
 	    
 	    while (rs.next()) {
-	        flag = true;
-	        String tid=rs.getString(2);
+	       flag = true;
+	       String tid=rs.getString(2);
 	        
-	        out.println("<tr>");
-	        for(int i=2;i<column_count;i++) {
-	        	out.println("<td>"+rs.getString(i)+"</td>");
+	       out.println("<tr>");
+	       for(int i=2;i<column_count;i++) {
+	     	 	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditEpisodePage("+tid+")'/>"+"</td>");
-	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteEpisodePage("+tid+")'/>"+"</td>");
-	        out.println("</tr>");
+	       out.println("<td><form action=\"EditEpisodePage.jsp\">");
+			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			 out.println("<input type=\"submit\" value=\"Edit\"/>");
+			 out.println("</form></td>");
+			 out.println("<td><form action=\"DeleteEpisodePage.jsp\">");
+			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			 out.println("<input type=\"submit\" value=\"Delete\"/>");
+			 out.println("</form></td>");
+	       out.println("</tr>");
 	    }
 	    rs.close();
 	    if (flag == false) {
@@ -109,7 +99,12 @@
 %>
 
 <%-- Info for movie --%>
-<input type='button' value='Add' onClick="goAddEpisodePage(movie_id)"/>
+<%
+out.println("<form action=\"DeleteEpisodePage.jsp\">");
+out.println("<input type=\"hidden\" name=\"mID\" value=\""+movie_id+"\" />");
+out.println("<input type=\"submit\" value=\"Add\"/>");
+out.println("</form>");
+%>
 <br/>
 <input type="button" value="Back to List" onclick="goViewAllTV()">
 

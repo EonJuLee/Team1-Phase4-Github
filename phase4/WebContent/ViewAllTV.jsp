@@ -68,8 +68,11 @@
 	        
 	        out.println("<td>"+tid+"</td>");
 	        out.println("<td>"+title+"</td>");
-	        out.println("<td>"+"<input type=\"button\" value=\"Episode Info\" onClick=\"goEpisodeInfoPage("+tid+")\"/>"+"</td>");
-	        out.println("</tr>");
+	        out.println("<td><form action=\"EpisodeInfoPage.jsp\">");
+			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			 out.println("<input type=\"submit\" value=\"Episode Info\"/>");
+			 out.println("</form></td>");
+			 out.println("</tr>");
 	    }
 	    rs.close();
 	    if (flag == false) {

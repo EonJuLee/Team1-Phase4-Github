@@ -14,13 +14,12 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
+	String movie_id=request.getParameter("mID");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
 %>
 
 <!-- For check value in movies -->
@@ -82,11 +81,16 @@ Episode Start date (YYYY-MM-DD) : <input type="text" name="upload_date">
 <br/>
 Episode runtime : <input type="text" name="runtime">
 <br/>
-
+<input type="hidden" value="<%=request.getParameter("mID")%>" name="mID">
 <input type="submit" value="Add new Episode">
 <br/>
-<input type="submit" value="Back to List" onclick="goEpisodeInfoPage()">
 </form>
+<%
+out.println("<td><form action=\"EpisodeInfoPage.jsp\">");
+out.println("<input type=\"hidden\" name=\"mID\" value=\""+movie_id+"\" />");
+out.println("<input type=\"submit\" value=\"Back to List\"/>");
+out.println("</form></td>");
+%>
 <!-- Form ends here -->
 
 </body>

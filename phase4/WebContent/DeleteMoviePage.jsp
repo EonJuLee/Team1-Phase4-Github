@@ -7,13 +7,11 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
 %>
 
 <%
@@ -35,6 +33,7 @@
 	}
 %>
 <%
+	String movie_id = request.getParameter("mID");
 	try {
 	    String sql = "delete from movie where id=" + movie_id;
 	    int res = stmt.executeUpdate(sql);

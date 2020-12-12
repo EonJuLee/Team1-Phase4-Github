@@ -14,13 +14,11 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
 %>
 
 <!-- For check value in movies -->
@@ -69,7 +67,7 @@
 
 <!-- Form starts here -->
 <form action="EditMovieChk.jsp" method="post" name="MovieInfo" onsubmit="return checkValue()">
-<h2>Add new Movie</h2>
+<h2>Edit Movie</h2>
 
 <%-- Info for movie --%>
 Movie Title : <input type="text" name="title">
@@ -89,11 +87,11 @@ Movie End year : <input type="number" name="end_year">
 <br/>
 Movie Language : <input type="text" name="language">
 <br/>
-
+<input type="hidden" value="<%=request.getParameter("mID")%>" name="mID">
 <input type="submit" value="Edit Movie">
 <br/>
-<input type="submit" value="Back to previous Page" onclick="goViewAllMovieInfo()">
 </form>
+<input type="submit" value="Back to previous Page" onclick="goViewAllMovieInfo()">
 <!-- Form ends here -->
 
 </body>

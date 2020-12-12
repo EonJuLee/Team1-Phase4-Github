@@ -14,13 +14,11 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
 %>
 
 <%
@@ -67,11 +65,6 @@
 		}
 	}
 	
-	function goVersionInfoPage() {
-		session.setAttribute("movie_id", movie_id);
-		location.href="VersionInfoPage.jsp";
-	}
-	
 	function isValidDate(date) {
 	      var valid_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
 	      if(!valid_pattern.test(date)){
@@ -97,11 +90,17 @@ Version End year : <input type="number" name="end_year">
 <br/>
 Version Language : <input type="text" name="language">
 <br/>
-
+<input type="hidden" value="<%=request.getParameter("mID")%>" name="mID">
 <input type="submit" value="Add new Version">
 <br/>
-<input type="submit" value="Back to List" onclick="goVersionInfoPage()">
 </form>
+<%
+out.println("<td><form action=\"VersionInfoPage.jsp\">");
+out.println("<input type=\"hidden\" name=\"mID\" value=\""+request.getParameter("mID")+"\" />");
+out.println("<input type=\"hidden\" name=\"country\" value=\""+request.getParameter("country")+"\" />");
+out.println("<input type=\"submit\" value=\"Back to List\"/>");
+out.println("</form></td>");
+%>
 <!-- Form ends here -->
 
 

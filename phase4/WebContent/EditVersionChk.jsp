@@ -7,15 +7,13 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
-	String version_country=(String)session.getAttribute("country");
+	String movie_id=request.getParameter("mID");
+	String version_country=request.getParameter("country");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
-	session.setAttribute("country",version_country);
 %>
 
 <%
@@ -61,22 +59,22 @@
 	String end_year = request.getParameter("end_year");
 	String start_year=upload_date.substring(0,4);
 	
-	if(Integer.parseInt(stored_start_year)>Integer.parseInt(end_year)) {
-		%>
-		<script>
-	     	alert("end year is before than start year in the database");
-	     	location.href = "EditVersionPage.jsp"
-        </script>
-        <%
-	}
-	if(Integer.parseInt(start_year)>Integer.parseInt(end_year)&&!start_year.equals("")) {
-		%>
-		<script>
-	     	alert("end year is before than start year now");
-	     	location.href = "EditVersionPage.jsp"
-	    </script>
-    <%
-	}
+	if(!end_year.equals("") && Integer.parseInt(stored_start_year)>Integer.parseInt(end_year) && start_year.equals("")) {
+	      %>
+	      <script>
+	           alert("end year is before than start year in the database");
+		     	location.href = "EditVersionPage.jsp"
+	        </script>
+	        <%
+	   }
+	   if(!start_year.equals("") && !end_year.equals("") && Integer.parseInt(start_year)>Integer.parseInt(end_year)) {
+	      %>
+	      <script>
+	           alert("end year is before than start year now");
+		     	location.href = "EditVersionPage.jsp"
+	       </script>
+	    <%
+	   }
 	
 	// keys and values
 	String[] keys = { "country", "title", "lang", "upload_date", "start_year", "end_year" };
