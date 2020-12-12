@@ -30,7 +30,7 @@
 
 <%
 	if(isAdmin==true) {
-		out.println("<br/>");
+		out.println("<br/><hr/><h4>Administrator Pages</h4>");
 		out.println("<input type=\"button\" value=\"View all ratings\" onclick=\"location.href='ViewAllRating.jsp'\"/>");
 	}
 

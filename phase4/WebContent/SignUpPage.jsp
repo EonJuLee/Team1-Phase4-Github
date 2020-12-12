@@ -7,42 +7,49 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<form action="SignUpChk.jsp" method="post">
-<h2>Essential Data</h2>
-ID<br/>
-<input type="text" name="id"><br/>
-PW<br/>
-<input type="password" id="password" class="classpw" name="pw"><br/>
-<%--
-pw check section. doesn't work for some reason.......... why........
-PW check<br/>
-<input type="password" id="password_chk" class="classpw">
-<span id="alert-success" style="display: none;">correct PW</span>
-<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">incorrect PW</span>
-<br/>
-<script>
-    $('.classpw').focusout(function () {
-        var pwd1 = $("#password").val();
-        var pwd2 = $("#password_chk").val();
- 
-        if (pwd1 != '' && pwd2 == '') {
-            null;
-        } else if (pwd1 != "" || pwd2 != "") {
-            if (pwd1 == pwd2) {
-                $("#alert-success").css('display', 'inline-block');
-                $("#alert-danger").css('display', 'none');
-            } else {
-                $("#alert-success").css('display', 'none');
-                $("#alert-danger").css('display', 'inline-block');
-            }
-        }
-    });
-</script> --%>
-
-<br/>
-<h2>Non-essential Data</h2>
-
+<script type="text/javascript">
+	function checkValue() {
+		if(!document.signUpInfo.fname) {
+			alert("please enter your first name");
+			return false;
+		}
+		if(!document.signUpInfo.lname.value) {
+			alert("please enter your last name");
+			return false;
+		}
+		if(!document.signUpInfo.contact.value) {
+			alert("please enter your contact number");
+			return false;
+		}
+		if(!document.signUpInfo.password) {
+			alert("please enter your password");
+			return false;
+		}
+		if(!document.signUpInfo.login_id) {
+			alert("please enter your ID");
+			return false;
+		}
+	}
+</script>
+<form action="SignUpChk.jsp" method="post" name="signUpInfo" onsubmit="return checkValue()">
+ID(Essentail) :
+<input type="text" name="login_id"><br/>
+PW(Essentail) :
+<input type="password" id="password" class="classpw" name="password"><br/>
+<%
+	// user information
+	String[] columns = { "gender", "birthdate", "address", "contact", "job", "fname", "middle", "lname", "admincode" };
+	String[] descriptions = { "gender(F or M)", "birthdate(YYYY-MM-DD)", "address", "contact(Essentail)", "job", "first name(Essentail)", "middle name", "last name(Essentail)", "If you are ADMIN, INPUT validation code" };
+	int info_length=columns.length;
+	
+	for(int i=0;i<info_length;i++){
+		out.println("Enter your "+descriptions[i]+" : <input type=\"text\" name=\""+columns[i]+"\"><br/>");
+	}
+%>
+<input type="submit" value="Sign Up">
 </form>
+<br/>
+
 </body>
 
 </html>
