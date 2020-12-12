@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page language="java" import="java.text.*, java.sql.*, phase4.JavaFile" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +39,14 @@ session.setAttribute("userID", userID);
 		}
 	}
 	
+	function isValidDate(date) {
+	      var valid_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+	      if(!valid_pattern.test(date)){
+	         return false;
+	      }
+	      return true;
+	   }
+	
 	function goMainPage() {
 		location.href="MainPage.jsp";
 	}
@@ -46,17 +55,23 @@ session.setAttribute("userID", userID);
 <%
 	// user information
 	String[] columns = { "gender", "birthdate", "address", "contact", "job", "fname", "middle", "lname" };
-	String[] descriptions = { "gender(F or M)", "birthdate(YYYY-MM-DD)", "address", "contact", "job", "first name", "middle name", "last name" };
+	String[] descriptions = { "gender(F or M)", "birthdate(YYYY-MM-DD)", "address", "contact(Essential)", "job", "first name(Essential)", "middle name", "last name(Essential)" };
+	String[] values = new String[columns.length];
 	int info_length=columns.length;
-	
+
 	out.println("Enter your gender : ");
 	out.println("<select name=\"gender\">");
-	out.println("<option value=\"F\" selected>F</option>");
-	out.println("<option value=\"M\" selected>M</option>");
+
+	out.println("<option value=\"null\" selected>none</option>");
+	out.println("<option value=\"F\">F</option>");
+	out.println("<option value=\"M\">M</option>");
+	
 	out.println("</select>");
 	out.println("<br/>");
 	for(int i=1;i<info_length;i++){
-		out.println("Enter your "+descriptions[i]+" : <input type=\"text\" name=\""+columns[i]+"\"><br/>");
+		
+		out.println("Enter your "+descriptions[i]+" : <input type=\"text\" name=\""+columns[i]+"\" value=\"\"><br/>");
+	
 	}
 %>
 <input type="submit" value="Edit">

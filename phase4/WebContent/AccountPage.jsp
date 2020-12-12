@@ -24,6 +24,8 @@
 
 
 <%-- Jsp for Account Page --%>
+<input type="button" value="My Page" onclick="location.href='MyPage.jsp'"/>
+<br/>
 <input type="button" value="Edit Account Profile" onclick="location.href='EditProfilePage.jsp'"/>
 <br/>
 <input type="button" value="Withdrawl" onclick="location.href='Withdrawl.jsp'"/>

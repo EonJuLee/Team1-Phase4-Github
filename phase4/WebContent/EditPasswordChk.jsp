@@ -39,7 +39,7 @@
 	request.setCharacterEncoding("EUC-KR");
 	String pw = request.getParameter("pw");
 	
-	String q = "update password from account where login_id=\'" + id + "\'";
+	String q = "update account set password=\'"+pw+"\' where id=\'" + userID + "\'";
 	// System.out.println(q);
 
 	try{

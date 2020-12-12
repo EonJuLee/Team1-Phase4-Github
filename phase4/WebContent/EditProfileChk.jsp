@@ -47,8 +47,9 @@ for(int i=0;i<info_length;i++) {
 if (inputs[0].equals("F") || inputs[0].equals("M")) {
 	inputs[0] = "\'" + inputs[0] + "\'";
 } else if (inputs[0].equals("")) {
-	inputs[0] = "\'" + inputs[0] + "\'";
+	inputs[0] = "\'\'";
 } else {
+	inputs[0] = "\'\'";
 	System.out.println("Unexpected input");
 }
 	 
@@ -57,8 +58,9 @@ if (inputs[0].equals("F") || inputs[0].equals("M")) {
 if (JavaFile.isValidDate(inputs[1])) {
 	inputs[1] = "TO_DATE(\'" + inputs[1] + "\',\'yyyy-mm-dd\')";
 } else if (inputs[1].equals("")) {
-	inputs[1] = "\'" + inputs[1] + "\'";
+	inputs[1] = "\'\'";
 } else {
+	inputs[1] = "\'\'";
 	System.out.println("Unexpected input");
 }
 	  
@@ -73,14 +75,14 @@ try {
 	String q = "update account set ";
 	int cnt = -1;
 	for (int i = 0; i < inputs.length; i++) {
-		if (!inputs[i].equals("';'")) {
+		if (!inputs[i].equals("\'\'")) {
 			cnt = i;
 		}
 	}
 	if (cnt == -1)
 		return;
 	for (int i = 0; i < inputs.length; i++) {
-		if (inputs[i].equals("';'"))
+		if (inputs[i].equals("\'\'"))
 			continue;
 
 		q += columns[i] + "=" + inputs[i];
