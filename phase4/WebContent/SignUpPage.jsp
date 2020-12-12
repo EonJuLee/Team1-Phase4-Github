@@ -9,7 +9,7 @@
 <body>
 <script type="text/javascript">
 	function checkValue() {
-		if(!document.signUpInfo.fname) {
+		if(!document.signUpInfo.fname.value) {
 			alert("please enter your first name");
 			return false;
 		}
