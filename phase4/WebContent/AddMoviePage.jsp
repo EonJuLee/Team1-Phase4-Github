@@ -47,8 +47,8 @@
 		return true;
 	}
 	
-	function goAdminPage() {
-		location.href="AdminPage.jsp";
+	function goViewAllMovieInfo() {
+		location.href="ViewAllMovieInfo.jsp";
 	}
 </script>
 
@@ -78,7 +78,7 @@ Movie Language : <input type="text" name="language">
 
 <input type="submit" value="Add new Movie">
 <br/>
-<input type="submit" value="Back to previous Page" onclick="goAdminPage()">
+<input type="submit" value="Back to previous Page" onclick="goViewAllMovieInfo()">
 </form>
 <!-- Form ends here -->
 
