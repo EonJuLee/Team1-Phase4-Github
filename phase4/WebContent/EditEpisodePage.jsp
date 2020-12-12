@@ -14,13 +14,11 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
 %>
 
 <!-- For check value in movies -->
@@ -52,11 +50,6 @@
 		}
 	}
 	
-	function goEpisodeInfoPage() {
-		session.setAttribute("movie_id", movie_id);
-		location.href="EpisodeInfoPage.jsp";
-	}
-	
 	function isValidDate(date) {
 	      var valid_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
 	      if(!valid_pattern.test(date)){
@@ -82,11 +75,17 @@ Episode runtime : <input type="text" name="runtime">
 <br/>
 Episode Start date (YYYY-MM-DD) : <input type="text" name="upload_date">
 <br/>
-
+<input type="hidden" name="mID" value="<%=request.getParameter("mID")%>"/>
+<input type="hidden" name="eID" value="<%=request.getParameter("eID")%>"/>
 <input type="submit" value="Edit Episode">
 <br/>
-<input type="submit" value="Back to List" onclick="goEpisodeInfoPage()">
 </form>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 <!-- Form ends here -->
 
 </body>

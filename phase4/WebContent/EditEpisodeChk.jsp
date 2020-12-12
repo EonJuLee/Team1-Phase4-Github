@@ -7,15 +7,13 @@
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
-	String movie_id=(String)session.getAttribute("movie_id");
-	String episode_id=(String)session.getAttribute("episode_id");
+	String movie_id=request.getParameter("mID");
+	String episode_id=request.getParameter("eID");
 	
 	// to give attributes to other pages
 	session.setAttribute("id", id);
 	session.setAttribute("isAdmin", isAdmin);
 	session.setAttribute("userID", userID);
-	session.setAttribute("movie_id",movie_id);
-	session.setAttribute("episode_id",episode_id);
 %>
 
 <%

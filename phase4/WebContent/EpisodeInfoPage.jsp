@@ -75,10 +75,12 @@
 	        }
 	       out.println("<td><form action=\"EditEpisodePage.jsp\">");
 			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			 out.println("<input type=\"hidden\" name=\"eID\" value=\""+rs.getString(2)+"\" />");
 			 out.println("<input type=\"submit\" value=\"Edit\"/>");
 			 out.println("</form></td>");
 			 out.println("<td><form action=\"DeleteEpisodePage.jsp\">");
 			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			 out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(2)+"\" />");
 			 out.println("<input type=\"submit\" value=\"Delete\"/>");
 			 out.println("</form></td>");
 	       out.println("</tr>");
@@ -100,7 +102,7 @@
 
 <%-- Info for movie --%>
 <%
-out.println("<form action=\"DeleteEpisodePage.jsp\">");
+out.println("<form action=\"AddEpisodePage.jsp\">");
 out.println("<input type=\"hidden\" name=\"mID\" value=\""+movie_id+"\" />");
 out.println("<input type=\"submit\" value=\"Add\"/>");
 out.println("</form>");
