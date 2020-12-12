@@ -29,6 +29,10 @@
 		location.href="EditMoviePage.jsp";
 		session.setAttribute("movie_id", movie_id);
 	}
+	function goDeleteMoviePage(movie_id) {
+		location.href="DeleteMoviePage.jsp";
+		session.setAttribute("movie_id", movie_id);
+	}
 </script>
 
 <%
@@ -76,8 +80,9 @@
 	        
 	        out.println("<td>"+tid+"</td>");
 	        out.println("<td>"+title+"</td>");
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditMoviePage(id)'/>"+"</td>");
-	        out.println("<td>"+"<input type='button' value='Version Info' onClick='goVersionInfoPage(id)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditMoviePage(tid)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteMoviePage(tid)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Version Info' onClick='goVersionInfoPage(tid)'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();

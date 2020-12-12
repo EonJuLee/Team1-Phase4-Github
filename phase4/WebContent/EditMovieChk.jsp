@@ -76,7 +76,7 @@
 		<script>
 	     	alert("end year is before than start year now");
 	     	location.href = "EditMoviePage.jsp"
-    </script>
+	    </script>
     <%
 	}
 	
@@ -84,5 +84,99 @@
 	String[] keys = { "ID", "Movie_type", "Title", "Runtime", "Start_year", "End_year", "Upload_date", "Language" };
 	String[] inputs=new String[keys.length];
 	
+	
+	
+	// set values in the input array
+	if(type.equals("")) {
+		inputs[1]="";
+	}
+	else {
+		inputs[1]="'"+type+"'";
+	}
+	
+	if(title.equals("")) {
+		inputs[2]="";
+	}
+	else {
+		inputs[2]="'"+title+"'";
+	}
+	
+	if(runtime.equals("")) {
+		inputs[3]="";
+	}
+	else {
+		inputs[3]=runtime;
+	}
+	
+	if(start_year.equals("")) {
+		inputs[4]="";
+		inputs[6]="";
+	}
+	else {
+		inputs[4]=start_year;
+		inputs[6]="to_date('"+upload_date+"','yyyy-mm-dd')";
+	}
+	
+	if(end_year.equals("")) {
+		inputs[5]="";
+	}
+	else {
+		inputs[5]=end_year;
+	}
+	
+	if(language.equals("")) {
+		inputs[7]="";
+	}
+	else {
+		inputs[7]="'"+language+"'";
+	}
+	
+	// update
+	try {
+        boolean added = false;
+        String sql = "update movie set ";
+
+        for (int i = 1; i < inputs.length; i++) {
+            if (inputs[i].equals("")) {
+                continue;
+            } else {
+                if (added == false)
+                    added = true;
+                else
+                    sql += ", ";
+                sql += keys[i] + "=" + inputs[i];
+            }
+        }
+        sql += " where id=" + movie_id;
+
+        if (added == false) {
+        	%>
+        	<script>
+            	alert("No extra information provided");
+            	location.href = "ViewAllMovieInfo.jsp"
+            </script>
+            <%
+        } else {
+            int res = stmt.executeUpdate(sql);
+            if (res > 0) {
+            	conn.commit();
+            	%>
+            	<script>
+                	alert("You successfully updated movie");
+                	location.href = "ViewAllMovieInfo.jsp"
+                </script>
+                <%       
+            } else {
+            	%>
+            	<script>
+                	alert("You failed to update movie");
+                	location.href = "AdminPage.jsp"
+                </script>
+                <%
+            }
+        }
+	} catch (Exception e) {
+        e.printStackTrace();
+	}
 
 %>

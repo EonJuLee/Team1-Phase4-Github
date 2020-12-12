@@ -10,7 +10,6 @@
 <body>
 
 <%
-
 	// get variables from account page
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
