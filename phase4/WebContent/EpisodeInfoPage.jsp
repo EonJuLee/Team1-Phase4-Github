@@ -64,6 +64,7 @@
 <% 
 	try {
 	    String sql = "select * from episode where movie_id=" + movie_id;
+	    boolean flag = false;
 	    out.println("<table border=\"1\">");
 	    ResultSet rs = stmt.executeQuery(sql);
 	    ResultSetMetaData rsmd=rs.getMetaData();
@@ -76,13 +77,13 @@
 	    
 	    while (rs.next()) {
 	        flag = true;
-	        String id=rs.getString(2);
+	        String tid=rs.getString(2);
 	        
-	        out.println("<tr>")
+	        out.println("<tr>");
 	        for(int i=2;i<column_count;i++) {
 	        	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditEpisodePage(id)'/>"+<"</td>");
+	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditEpisodePage(id)'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();

@@ -64,6 +64,7 @@
 <% 
 	try {
 	    String sql = "select * from version where movie_id=" + movie_id;
+	    boolean flag= false;
 	    out.println("<table border=\"1\">");
 	    ResultSet rs = stmt.executeQuery(sql);
 	    ResultSetMetaData rsmd=rs.getMetaData();
@@ -78,11 +79,11 @@
 	        flag = true;
 	        String country=rs.getString(2);
 	        
-	        out.println("<tr>")
+	        out.println("<tr>");
 	        for(int i=2;i<column_count;i++) {
 	        	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditVersionPage(country)'/>"+<"</td>");
+	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditVersionPage(country)'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();

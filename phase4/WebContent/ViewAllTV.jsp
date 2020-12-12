@@ -48,6 +48,7 @@
 
 <% 
 	String sql = "select id, title from movie where movie_type='TV Series' order by id asc";
+	boolean flag = false;
 	try {
 	    out.println("<table border=\"1\">");
 	    ResultSet rs = stmt.executeQuery(sql);
@@ -61,13 +62,13 @@
 	    
 	    while (rs.next()) {
 	        flag = true;
-	        out.println("<tr>")
-	        String id = rs.getString(1);
+	        out.println("<tr>");
+	        String tid = rs.getString(1);
 	        String title = rs.getString(2);
 	        
-	        out.println("<td>"+id+"</td>");
+	        out.println("<td>"+tid+"</td>");
 	        out.println("<td>"+title+"</td>");
-	        out.println("<td>"+"<input type='button' value='Episode Info' onClick='goEpisodeInfoPage(id)'/>"+<"</td>");
+	        out.println("<td>"+"<input type='button' value='Episode Info' onClick='goEpisodeInfoPage(id)'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();
