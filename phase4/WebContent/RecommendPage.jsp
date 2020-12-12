@@ -202,6 +202,11 @@ q = "select m.id, m.title, m.rating, count(*) as rated_number"+
 		" limit 10";
 	printTable(conn, q, out);
 %>
-<input type="button" value="Back to Previous Page" onclick="location.href='MoviePage.jsp'"/><br/>
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </body>
 </html>

@@ -88,6 +88,11 @@ String q = "select id, title from movie"+
 		" order by id asc";
 printTable(conn, q, out);
 %>
-<input type="button" value="Back to Previous Page" onclick="location.href='SearchMoviePage.jsp'"/>
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </body>
 </html>

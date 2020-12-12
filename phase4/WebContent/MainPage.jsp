@@ -28,7 +28,7 @@
 <input type="button" value="Rating Page" onclick="location.href='RatingPage.jsp'"/><br/>
 <% 
 if(isAdmin==true) {
-	out.println("<input type=\"button\" value=\"Admin Page\" onclick=\"location.href='AdminPage.jsp'\"/><br/>")
+	out.println("<input type=\"button\" value=\"Admin Page\" onclick=\"location.href='AdminPage.jsp'\"/><br/>");
 }
 %>
 </body>

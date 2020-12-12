@@ -76,7 +76,13 @@ session.setAttribute("userID", userID);
 %>
 <input type="submit" value="Edit">
 <br/>
-<input type="button" value="Back to First Page" onclick="goMainPage()"/>
+
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </form>
 </body>
 </html>

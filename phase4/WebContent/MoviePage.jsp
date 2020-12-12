@@ -26,6 +26,12 @@
 <input type="button" value="Movie List" onclick="location.href='ViewAllMovie.jsp'"/><br/>
 <input type="button" value="Serach Movie" onclick="location.href='SearchMoviePage.jsp'"/><br/>
 <input type="button" value="Recommend Page" onclick="location.href='RecommendPage.jsp'"/><br/>
-<input type="button" value="Back to Previous Page" onclick="location.href='MainPage.jsp'"/><br/>
+
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </body>
 </html>

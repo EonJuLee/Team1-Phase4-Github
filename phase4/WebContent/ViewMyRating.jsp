@@ -94,8 +94,12 @@
 		
 	}
 %>
-
-<input type="button" value="Back to Rating Page" onclick="location.href='RatingPage.jsp'"/>
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 
 </body>
 </html>

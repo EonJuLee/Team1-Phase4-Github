@@ -109,6 +109,11 @@ out.println("<br/>");
 %>
 <input type="submit" value="Search"/>
 </form>
-<input type="button" value="Back to Previous Page" onclick="location.href='MoviePage.jsp'"/>
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </body>
 </html>

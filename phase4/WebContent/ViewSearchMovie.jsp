@@ -125,7 +125,11 @@ if(selversion!=null){
 System.out.println(q);
 printTable(conn, q + " order by m.id asc", out);
 %>
-<input type="button" value="Back to Previous Page" onclick="location.href='SearchMoviePage.jsp'"/>
-
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </body>
 </html>

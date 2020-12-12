@@ -85,6 +85,11 @@ public void printTable(Connection conn, String q, JspWriter out){
 System.out.println(q);
 	printTable(conn, q, out);
 %>
-<input type="button" value="Back to Previous Page" onclick="location.href='MoviePage.jsp'"/><br/>
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </body>
 </html>

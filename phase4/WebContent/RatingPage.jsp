@@ -26,8 +26,13 @@
 <%-- Jsp for Account Page --%>
 <input type="button" value="View my Ratings" onclick="location.href='ViewMyRating.jsp'"/>
 <br/>
-<input type="button" value="Back to Previous Page" onclick="location.href='MainPage.jsp'"/>
 
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 <%
 	if(isAdmin==true) {
 		out.println("<br/><hr/><h4>Administrator Pages</h4>");

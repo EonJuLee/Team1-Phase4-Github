@@ -39,7 +39,7 @@
 <%
 	//1. initialize variables
 	request.setCharacterEncoding("EUC-KR");
-	String title = request.getParameter("title");
+	String eptitle = request.getParameter("title");
 	String season = request.getParameter("season");
 	String epnum = request.getParameter("epnum");
 	String runtime = request.getParameter("runtime");

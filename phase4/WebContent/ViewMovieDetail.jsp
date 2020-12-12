@@ -90,8 +90,6 @@ function goBack() {
   window.history.back();
 }
 </script>
-<form action>
-</form>
 <input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </body>
 </html>

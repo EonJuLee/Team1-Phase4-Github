@@ -12,7 +12,12 @@ ID : <input type="text" name="id"><br/>
 PW : <input type="password" name="pw"><br/>
 <input type="submit" value="Login">
 <br/>
-<input type="button" value="Back to First Page" onclick="location.href='WelcomePage.jsp'"/>
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </form>
 </body>
 </html>

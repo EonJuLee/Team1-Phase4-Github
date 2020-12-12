@@ -38,7 +38,12 @@
 PW : <input type="text" name="pw"><br/>
 <input type="submit" value="Edit">
 <br/>
-<input type="button" value="Back to Main Page" onclick="goMainPage()"/>
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </form>
 
 </body>
