@@ -6,18 +6,29 @@
 <meta charset="EUC-KR">
 </head>
 <body>
-<h1>Log in</h1>
+<h1>Edit Profile</h1>
+<%
+// get variables from account page
+String id = (String) session.getAttribute("id");
+Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+int userID = (int) session.getAttribute("userID");
+
+// to give attributes to other pages
+session.setAttribute("id", id);
+session.setAttribute("isAdmin", isAdmin);
+session.setAttribute("userID", userID);
+%>
 <script type="text/javascript">
 	function checkValue() {
 		if(!document.userInfo.fname) {
 			alert("please enter your first name");
 			return false;
 		}
-		if(!document.userInfo.lname) {
+		if(!document.userInfo.lname.value) {
 			alert("please enter your last name");
 			return false;
 		}
-		if(!document.userInfo.contact) {
+		if(!document.userInfo.contact.value) {
 			alert("please enter your contact number");
 			return false;
 		}
