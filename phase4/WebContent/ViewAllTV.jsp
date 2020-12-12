@@ -68,7 +68,7 @@
 	        
 	        out.println("<td>"+tid+"</td>");
 	        out.println("<td>"+title+"</td>");
-	        out.println("<td>"+"<input type='button' value='Episode Info' onClick='goEpisodeInfoPage(id)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Episode Info' onClick='goEpisodeInfoPage(tid)'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();

@@ -57,6 +57,11 @@
 		session.setAttribute("country", country);
 		location.href="EditVersionPage.jsp";
 	}
+	
+	function goDeleteVersionPage(country) {
+		session.setAttribute("country", country);
+		location.href="DeleteVersionPage.jsp";
+	}
 </script>
 
 <!-- Form starts here -->
@@ -84,6 +89,7 @@
 	        	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
 	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditVersionPage(country)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteVersionPage(country)'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();

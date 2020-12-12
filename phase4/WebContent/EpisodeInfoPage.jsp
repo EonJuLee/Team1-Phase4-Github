@@ -57,6 +57,11 @@
 		session.setAttribute("episode_id",id);
 		location.href="EditEpisodePage.jsp";
 	}
+	
+	function goDeleteEpisodePage(id) {
+		session.setAttribute("episode_id",id);
+		location.href="DeleteEpisodePage.jsp";
+	}
 </script>
 
 <!-- Form starts here -->
@@ -83,7 +88,8 @@
 	        for(int i=2;i<column_count;i++) {
 	        	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditEpisodePage(id)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditEpisodePage(tid)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteEpisodePage(tid)'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();
