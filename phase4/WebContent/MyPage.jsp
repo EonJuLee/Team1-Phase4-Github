@@ -37,7 +37,7 @@
 	}
 %>
 <%
-	String q = "select login_id, password, account_type, gender, birthdate, address, job, contact, fname, middle, lname "+
+	String q = "select login_id, password, account_type, gender, birthdate, address, job, contact, fname, middle, lname, age "+
 				"from account where id="+userID;
 	try{
 		ResultSet rs = stmt.executeQuery(q);
@@ -47,6 +47,7 @@
 			out.println("account type : "+rs.getString(3)+"</br>");
 			out.println("gender       : "+rs.getString(4)+"</br>");
 			out.println("birthdate    : "+rs.getString(5)+"</br>");
+			out.println("age          : "+rs.getString(12)+"</br>");
 			out.println("address      : "+rs.getString(6)+"</br>");
 			out.println("job          : "+rs.getString(7)+"</br>");
 			out.println("contact      : "+rs.getString(8)+"</br>");

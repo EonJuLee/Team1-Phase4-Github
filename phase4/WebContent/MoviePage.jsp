@@ -25,6 +25,7 @@
 <%-- I think it makes more sense to list all the movies in this page --%>
 <input type="button" value="Movie List" onclick="location.href='ViewAllMovie.jsp'"/><br/>
 <input type="button" value="Serach Movie" onclick="location.href='SearchMoviePage.jsp'"/><br/>
+<input type="button" value="Recommend Page" onclick="location.href='RecommendPage.jsp'"/><br/>
 <input type="button" value="Back to Previous Page" onclick="location.href='MainPage.jsp'"/><br/>
 </body>
 </html>

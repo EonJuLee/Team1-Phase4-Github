@@ -78,5 +78,6 @@ public void printTable(Connection conn, String q, JspWriter out){
 <%
 	printTable(conn, "select id, title from movie order by id asc", out);
 %>
+<input type="button" value="Back to Previous Page" onclick="location.href='MoviePage.jsp'"/><br/>
 </body>
 </html>

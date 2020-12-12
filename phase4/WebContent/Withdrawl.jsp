@@ -39,6 +39,9 @@ try {
     
 	    if (res > 0) {
 	    	conn.commit();
+	    	session.removeAttribute("id");
+	    	session.removeAttribute("isAdmin");
+	    	session.removeAttribute("userID");
 	    	%>
 	    	<script>
 	        	alert("You successfully deleted account");

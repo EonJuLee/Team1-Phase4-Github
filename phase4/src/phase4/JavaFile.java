@@ -7,8 +7,6 @@ import java.text.*;
 import java.util.Calendar;
 import java.util.Scanner;
 
-import javax.servlet.jsp.JspWriter;
-
 public class JavaFile {
     static Scanner sc = null;
     static int userID = -1;
@@ -23,39 +21,6 @@ public class JavaFile {
 //    	}
 //    }
 
-    public void printTable(Connection conn, String q, JspWriter out){
-    	ResultSet rs = null;
-    	PreparedStatement pstmt = null;
-    	try{
-    		pstmt = conn.prepareStatement(q);
-    		rs = pstmt.executeQuery();
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-    	try{
-    		out.println("<table border=\"1\">");
-    		ResultSetMetaData rsmd = rs.getMetaData();
-    		int sz = rsmd.getColumnCount();
-    		for(int i=1;i<=sz;i++){
-    			out.println("<th>"+rsmd.getColumnName(i)+"</th>");
-    		}
-    		while(rs.next()){
-    			out.println("<tr>");
-    			for(int i=1;i<=sz;i++){
-    				out.print("<td>");
-    				if(rsmd.getColumnName(i).equals("HOURS")) out.println(String.format("%.1f", rs.getFloat(i)));
-    				else out.println(rs.getString(i));
-    				out.println("</td>");
-    			}
-    			out.println("</tr>");
-    		}
-    		out.println("</table>");
-    		rs.close();
-    		
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-    }
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         String url = "jdbc:postgresql://localhost/jsy";
