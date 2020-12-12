@@ -69,6 +69,7 @@
 <% 
 	try {
 	    String sql = "select * from episode where movie_id=" + movie_id;
+	    System.out.println(sql);
 	    boolean flag = false;
 	    out.println("<table border=\"1\">");
 	    ResultSet rs = stmt.executeQuery(sql);
@@ -88,8 +89,8 @@
 	        for(int i=2;i<column_count;i++) {
 	        	out.println("<td>"+rs.getString(i)+"</td>");
 	        }
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditEpisodePage(tid)'/>"+"</td>");
-	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteEpisodePage(tid)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditEpisodePage("+tid+")'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteEpisodePage("+tid+")'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();
@@ -108,7 +109,7 @@
 %>
 
 <%-- Info for movie --%>
-<input type='button' value='Add' onClick='goAddEpisodePage(movie_id)'/>
+<input type='button' value='Add' onClick="goAddEpisodePage(movie_id)"/>
 <br/>
 <input type="button" value="Back to List" onclick="goViewAllTV()">
 

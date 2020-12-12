@@ -78,7 +78,12 @@ Movie Language : <input type="text" name="language">
 
 <input type="submit" value="Add new Movie">
 <br/>
-<input type="submit" value="Back to previous Page" onclick="goViewAllMovieInfo()">
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
 </form>
 <!-- Form ends here -->
 

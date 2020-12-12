@@ -23,7 +23,7 @@
 
 
 <%-- Add & Edit movies --%>
-<input type="button" value="Movie & Version Management" onclick="location.href='ViewAllMovie.jsp'"/>
+<input type="button" value="Movie & Version Management" onclick="location.href='ViewAllMovieInfo.jsp'"/>
 <br/>
 <input type="button" value="Episode Management" onclick="location.href='ViewAllTV.jsp'"/>
 <br/>

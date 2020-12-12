@@ -79,7 +79,7 @@
 	String q = "insert into movie values(" + tid + ", '" + type + "', '" + title + "', " + runtime + ", "
             + start_year + ", " + (flag == true ? "null" : end_year) + ", " + "to_date('" + upload_date
             + "','yyyy-mm-dd'), " + rating + ", '" + language + "')";
-	// System.out.println(q);
+	System.out.println(q);
 
 	try{
 		int res = stmt.executeUpdate(q);

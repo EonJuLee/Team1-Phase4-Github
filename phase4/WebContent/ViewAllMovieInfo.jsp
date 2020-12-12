@@ -80,9 +80,9 @@
 	        
 	        out.println("<td>"+tid+"</td>");
 	        out.println("<td>"+title+"</td>");
-	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditMoviePage(tid)'/>"+"</td>");
-	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteMoviePage(tid)'/>"+"</td>");
-	        out.println("<td>"+"<input type='button' value='Version Info' onClick='goVersionInfoPage(tid)'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Edit' onClick='goEditMoviePage("+tid+")'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Delete' onClick='goDeleteMoviePage("+tid+")'/>"+"</td>");
+	        out.println("<td>"+"<input type='button' value='Version Info' onClick='goVersionInfoPage("+tid+")'/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();

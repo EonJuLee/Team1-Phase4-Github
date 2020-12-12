@@ -68,7 +68,7 @@
 	        
 	        out.println("<td>"+tid+"</td>");
 	        out.println("<td>"+title+"</td>");
-	        out.println("<td>"+"<input type='button' value='Episode Info' onClick='goEpisodeInfoPage(tid)'/>"+"</td>");
+	        out.println("<td>"+"<input type=\"button\" value=\"Episode Info\" onClick=\"goEpisodeInfoPage("+tid+")\"/>"+"</td>");
 	        out.println("</tr>");
 	    }
 	    rs.close();
@@ -86,3 +86,9 @@
         <%
 	}		
 %>
+<script type="text/javascript">
+function goBack() {
+  window.history.back();
+}
+</script>
+<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
