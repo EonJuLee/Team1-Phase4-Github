@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ page language="java" import="java.text.*, java.sql.*, phase4.JavaFile" %>
 <!DOCTYPE html>
-
+<html>
 <%
 	// session variables
 	String id = (String) session.getAttribute("id");
@@ -12,15 +12,15 @@
 
 <%
 	String url = "jdbc:postgresql://localhost/jsy";
-	String id = "jsy";
-	String pw = "jsy";
+	String DBid = "jsy";
+	String DBpw = "jsy";
 	
 	Connection conn = null;
 	Statement stmt = null;
 
 	try {
 	    Class.forName("org.postgresql.Driver");
-	    conn = DriverManager.getConnection(url, id, pw);
+	    conn = DriverManager.getConnection(url, DBid, DBpw);
 	    conn.setAutoCommit(false);
 	    stmt = conn.createStatement();
 	} catch (Exception e) {
@@ -39,16 +39,20 @@ try {
     
 	    if (res > 0) {
 	    	conn.commit();
+	    	%>
 	    	<script>
 	        	alert("You successfully deleted account");
 	        	location.href = "WelcomePage.jsp"
 	        </script>
+	        <%
 	    } 
 	    else {
+	    	%>
 	    	<script>
 		    	alert("You failed to delete account");
 		    	location.href = "AccountPage.jsp"
 		    </script>
+		    <%
 	    }
 	    
 	}catch (Exception e) {
@@ -56,3 +60,4 @@ try {
           e.printStackTrace();
     }
 %>
+</html>

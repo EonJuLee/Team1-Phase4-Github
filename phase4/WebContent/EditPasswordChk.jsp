@@ -18,15 +18,15 @@
 
 <%
 	String url = "jdbc:postgresql://localhost/jsy";
-	String id = "jsy";
-	String pw = "jsy";
+	String DBid = "jsy";
+	String DBpw = "jsy";
 	
 	Connection conn = null;
 	Statement stmt = null;
 
 	try {
 	    Class.forName("org.postgresql.Driver");
-	    conn = DriverManager.getConnection(url, id, pw);
+	    conn = DriverManager.getConnection(url, DBid, DBpw);
 	    conn.setAutoCommit(false);
 	    stmt = conn.createStatement();
 	} catch (Exception e) {
@@ -35,25 +35,32 @@
 	}
 %>
 
-<%
+<% 
 	request.setCharacterEncoding("EUC-KR");
 	String pw = request.getParameter("pw");
 	
-try {
-    String q = "update password from account where login_id=\'" + user_id + "\'";
-    // System.out.println(q);
-    
-    int res = stmt.executeUpdate(q);
-    if (res > 0) {
-    	conn.commit();
-    	<script>
-        	alert("You successfully update account password.");
-        	location.href = "AccountPage.jsp"
-        </script>
-    } else {
-    	<script>
-    		alert("You failed to update account password.");
-    		location.href = "EditPassword.jsp"
-    	</script>
-    }
+	String q = "update password from account where login_id=\'" + id + "\'";
+	// System.out.println(q);
+
+	try{
+		int res = stmt.executeUpdate(q);
+	   if (res > 0) {
+	    	conn.commit();
+		%>
+	    	<script>
+	        	alert("You successfully update account password.");
+	        	location.href = "AccountPage.jsp"
+	        </script>
+	     <%
+	    }else {
+	    	%>
+	    	<script>
+	    		alert("You failed to update account password.");
+	    		location.href = "EditPassword.jsp"
+	    	</script>
+	    <%	
+	    }
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 %>

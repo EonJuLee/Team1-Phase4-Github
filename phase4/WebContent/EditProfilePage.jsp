@@ -46,7 +46,7 @@ session.setAttribute("userID", userID);
 	int info_length=columns.length;
 	
 	for(int i=0;i<info_length;i++){
-		out.println("Enter your "+descriptions[i]+" : <input type=\"text\" name=\""+columns[i]+"\"><br/>";
+		out.println("Enter your "+descriptions[i]+" : <input type=\"text\" name=\""+columns[i]+"\"><br/>");
 	}
 %>
 <input type="submit" value="Edit">

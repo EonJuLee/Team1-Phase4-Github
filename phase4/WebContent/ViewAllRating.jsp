@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page language="java" import="java.text.*, java.sql.*, phase4.JavaFile" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,23 +22,18 @@
 %>
 
 <!-- For check value in password -->
-<script type="text/javascript">
-	function goRatingPage() {
-		location.href="RatingPage.jsp";
-	}
-</script>
 
 <%
 	String url = "jdbc:postgresql://localhost/jsy";
-	String id = "jsy";
-	String pw = "jsy";
+	String DBid = "jsy";
+	String DBpw = "jsy";
 	
 	Connection conn = null;
 	Statement stmt = null;
 	
 	try {
 	    Class.forName("org.postgresql.Driver");
-	    conn = DriverManager.getConnection(url, id, pw);
+	    conn = DriverManager.getConnection(url, DBid, DBpw);
 	    conn.setAutoCommit(false);
 	    stmt = conn.createStatement();
 	} catch (Exception e) {
@@ -49,6 +45,8 @@
 <%
 	String sql = "select m.title, a.login_id, r.rating from movie m, rating r, account a "
 			   + "where r.movie_id=m.id and r.account_id=a.id";
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 	try {
 		pstmt=conn.prepareStatement(sql);
 		rs=pstmt.executeQuery();
@@ -85,9 +83,6 @@
 		
 	}
 %>
-
-<input type="button" value="Back to Rating Page" onclick="goRatingPage()"/>
-</form>
-
+<input type="button" value="Back to Rating Page" onclick="location.href='RatingPage.jsp'"/>
 </body>
 </html>

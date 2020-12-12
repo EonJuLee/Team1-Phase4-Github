@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ page language="java" import="java.text.*, java.sql.*, phase4.JavaFile" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +30,15 @@
 
 <%
 	String url = "jdbc:postgresql://localhost/jsy";
-	String id = "jsy";
-	String pw = "jsy";
+	String DBid = "jsy";
+	String DBpw = "jsy";
 	
 	Connection conn = null;
 	Statement stmt = null;
 	
 	try {
 	    Class.forName("org.postgresql.Driver");
-	    conn = DriverManager.getConnection(url, id, pw);
+	    conn = DriverManager.getConnection(url, DBid, DBpw);
 	    conn.setAutoCommit(false);
 	    stmt = conn.createStatement();
 	} catch (Exception e) {
@@ -50,7 +51,8 @@
 	String sql = "select m.title, r.rating from movie m, rating r "
 			+ "where r.movie_id=m.id and r.account_id='"
 	        + userID + "'";
-
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 	try {
 		boolean flag = true;
 		pstmt=conn.prepareStatement(sql);
@@ -93,8 +95,7 @@
 	}
 %>
 
-<input type="button" value="Back to Rating Page" onclick="goRatingPage()"/>
-</form>
+<input type="button" value="Back to Rating Page" onclick="location.href='RatingPage.jsp'"/>
 
 </body>
 </html>

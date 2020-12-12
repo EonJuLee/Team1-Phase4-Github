@@ -22,6 +22,9 @@
 %>
 <%=id %> logined
 <input type="button" value="Sign out" onclick="location.href='SignOut.jsp'"/><br/>
-
+<hr/>
+<input type="button" value="My Page" onclick="location.href='AccountPage.jsp'"/><br/>
+<input type="button" value="Movie Page" onclick="location.href='MoviePage.jsp'"/><br/>
+<input type="button" value="Rating Page" onclick="location.href='RatingPage.jsp'"/><br/>
 </body>
 </html>
