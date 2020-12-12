@@ -20,7 +20,7 @@ session.setAttribute("userID", userID);
 %>
 <script type="text/javascript">
 	function checkValue() {
-		if(!document.userInfo.fname) {
+		if(!document.userInfo.fname.value) {
 			alert("please enter your first name");
 			return false;
 		}
@@ -30,6 +30,10 @@ session.setAttribute("userID", userID);
 		}
 		if(!document.userInfo.contact.value) {
 			alert("please enter your contact number");
+			return false;
+		}
+		if(!isValidDate(document.MovieInfo.birthdate.value)) {
+			alert("Birthdate should be valid");
 			return false;
 		}
 	}
@@ -45,7 +49,13 @@ session.setAttribute("userID", userID);
 	String[] descriptions = { "gender(F or M)", "birthdate(YYYY-MM-DD)", "address", "contact", "job", "first name", "middle name", "last name" };
 	int info_length=columns.length;
 	
-	for(int i=0;i<info_length;i++){
+	out.println("Enter your gender : ");
+	out.println("<select name=\"gender\">");
+	out.println("<option value=\"F\" selected>F</option>");
+	out.println("<option value=\"M\" selected>M</option>");
+	out.println("</select>");
+	out.println("<br/>");
+	for(int i=1;i<info_length;i++){
 		out.println("Enter your "+descriptions[i]+" : <input type=\"text\" name=\""+columns[i]+"\"><br/>");
 	}
 %>

@@ -6,11 +6,73 @@
 <head>
 <meta charset="UTF-8">
 </head>
-<body>
-<form action="AddMovieChk.jsp" method="post">
-<h2></h2>
-	
-</form>
-</body>
 
+<body>
+
+<!-- For check value in movies -->
+<script type="text/javascript">
+	function checkValue() {
+		if(!document.MovieInfo.title.value) {
+			alert("please enter movie title");
+			return false;
+		}
+		if(!document.MovieInfo.runtime.value) {
+			alert("please enter movie runtime");
+			return false;
+		}
+		if(!isNumber(document.MovieInfo.runtime.value)) {
+			alert("Runtime should be number");
+			return false;
+		}
+		if(!document.MovieInfo.upload_date.value) {
+			alert("please enter start date of movie");
+			return false;
+		}
+		if(!isValidDate(document.MovieInfo.upload_date.value)) {
+			alert("Start date should be valid");
+			return false;
+		}
+		if(!document.MovieInfo.language.value) {
+			alert("please enter movie language");
+			return false;
+		}
+	}
+	
+	function goAdminPage() {
+		location.href="AdminPage.jsp";
+	}
+</script>
+
+
+<!-- Form starts here -->
+<form action="AddMovieChk.jsp" method="post" name="MovieInfo" onsubmit="return checkValue()">
+<h2>Add new Movie</h2>
+
+<%-- Info for movie --%>
+Movie Title : <input type="text" name="title">
+<br/>
+Movie Type : 
+<select name="type">
+	<option value="Movie" selected>Movie</option>
+	<option value="TV Series">TV Series</option>
+	<option value="knuMovieDB original">knuMovieDB original</option>
+</select>
+<br/>
+Movie Runtime : <input type="text" name="runtime">
+<br/>
+Movie Start date (YYYY-MM-DD) : <input type="text" name="upload_date">
+<br/>
+Movie End year : <input type="number" name="end_year">
+<br/>
+Movie Language : <input type="text" name="language">
+<br/>
+
+<input type="submit" value="Add new Movie">
+<br/>
+<input type="submit" value="Back to previous Page" onclick="goAdminPage()">
+</form>
+<!-- Form ends here -->
+
+
+</body>
 </html>
