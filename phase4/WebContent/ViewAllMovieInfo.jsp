@@ -97,3 +97,4 @@
         <%
 	}		
 %>
+<input type="button" value="Back to Previous Page" onclick="location.href='AdminPage.jsp'"/>

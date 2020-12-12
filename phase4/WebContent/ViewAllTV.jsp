@@ -94,4 +94,4 @@ function goBack() {
   window.history.back();
 }
 </script>
-<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
+<input type="button" value="Back to Previous Page" onclick="location.href='AdminPage.jsp'"/>
