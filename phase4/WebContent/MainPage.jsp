@@ -10,10 +10,15 @@
 </head>
 <body>
 <%
-// session attribute : id(String), isAdmin(Boolean), userID(int)
+	// session attribute : id(String), isAdmin(Boolean), userID(int)
 	String id = (String) session.getAttribute("id");
 	Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 	int userID = (int) session.getAttribute("userID");
+
+	// to give attributes to other pages
+	session.setAttribute("id", id);
+    session.setAttribute("isAdmin", isAdmin);
+    session.setAttribute("userID", userID);
 %>
 <%=id %> logined
 <input type="button" value="Sign out" onclick="location.href='SignOut.jsp'"/><br/>
