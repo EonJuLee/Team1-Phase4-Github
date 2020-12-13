@@ -84,3 +84,5 @@ COMP322002-Introduction to Database-Term Project : Eonju Lee, Jeon sungyoon
 - openJDK Runtime Environment (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04)
 - OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04)
 
+## Demo URL
+- https://youtu.be/oe7odDA7ciY
