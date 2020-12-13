@@ -90,7 +90,7 @@
 		%>
 	    	<script>
 	        	alert("You successfully add new version of movie.");
-	        	location.href = "AdminPage.jsp"
+	        	location.href = "VersionInfoPage.jsp?mID="+<%=movie_id%>
 	        </script>
 	     <%
 	    }else {

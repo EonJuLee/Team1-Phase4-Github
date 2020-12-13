@@ -60,6 +60,10 @@ public void printTable(Connection conn, String q, JspWriter out){
 				out.println(rs.getString(i));
 				out.println("</td>");
 			}
+			out.println("<td><form action=\"ViewMovieDetail.jsp\">");
+			out.println("<input type=\"hidden\" name=\"mID\" value=\""+rs.getString(1)+"\" />");
+			out.println("<input type=\"submit\" value=\"View Detail\"/>");
+			out.println("</form></td>");
 			out.println("</tr>");
 		}
 		out.println("</table>");

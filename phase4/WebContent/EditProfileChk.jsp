@@ -47,9 +47,9 @@ for(int i=0;i<info_length;i++) {
 if (inputs[0].equals("F") || inputs[0].equals("M")) {
 	inputs[0] = "\'" + inputs[0] + "\'";
 } else if (inputs[0].equals("")) {
-	inputs[0] = "\'\'";
+	inputs[0] = "null";
 } else {
-	inputs[0] = "\'\'";
+	inputs[0] = "null";
 	System.out.println("Unexpected input");
 }
 	 
@@ -58,9 +58,9 @@ if (inputs[0].equals("F") || inputs[0].equals("M")) {
 if (JavaFile.isValidDate(inputs[1])) {
 	inputs[1] = "TO_DATE(\'" + inputs[1] + "\',\'yyyy-mm-dd\')";
 } else if (inputs[1].equals("")) {
-	inputs[1] = "\'\'";
+	inputs[1] = "null";
 } else {
-	inputs[1] = "\'\'";
+	inputs[1] = "null";
 	System.out.println("Unexpected input");
 }
 	  

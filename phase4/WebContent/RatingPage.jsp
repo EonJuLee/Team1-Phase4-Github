@@ -32,7 +32,7 @@ function goBack() {
   window.history.back();
 }
 </script>
-<input type="button" value="Back to Previous Page" onclick="return goBack()"/>
+<input type="button" value="Back to Previous Page" onclick="location.href='MainPage.jsp'"/>
 <%
 	if(isAdmin==true) {
 		out.println("<br/><hr/><h4>Administrator Pages</h4>");

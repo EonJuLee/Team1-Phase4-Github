@@ -7,7 +7,7 @@
 <meta charset="EUC-KR">
 </head>
 <body>
-<h1>Edit Password</h1>
+<h1>My Rating</h1>
 
 <%
 	// get variables from account page

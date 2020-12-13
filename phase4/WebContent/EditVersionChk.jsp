@@ -153,7 +153,7 @@
             	%>
             	<script>
                 	alert("You successfully updated version");
-                	location.href = "VersionInfoPage.jsp"
+                	location.href = "VersionInfoPage.jsp?mID="+<%=movie_id%>
                 </script>
                 <%       
             } else {

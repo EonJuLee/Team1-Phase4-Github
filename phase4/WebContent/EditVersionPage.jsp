@@ -30,7 +30,7 @@
 			alert("please enter version title");
 			return false;
 		}
-		if(!document.MovieInfo.country.value) {
+		if(!document.MovieInfo.country2.value) {
 			alert("please enter version country");
 			return false;
 		}
@@ -65,7 +65,7 @@
 <h3>Enter information version of movie</h3>
 Version Title : <input type="text" name="title">
 <br/>
-Version Country : <input type="text" name="country">
+Version Country : <input type="text" name="country2">
 <br/>
 Version Start date (YYYY-MM-DD) : <input type="text" name="upload_date">
 <br/>
