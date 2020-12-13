@@ -62,3 +62,25 @@ COMP322002-Introduction to Database-Term Project : Eonju Lee, Jeon sungyoon
 : 관리자 관련 기능 페이지를 종료하고, 메인 페이지(Main Page)로 이동함
 
 ## Development Environment
+#### DBMS
+- PostgreSQL 12.5 (Ubuntu 12.5-0ubuntu0.20.04.1))
+
+#### VM
+- Oracle VM VirtualBox 
+- 버전 : 5.2.26 r128414(Qt5.6.2)
+
+#### OS - Linux
+- 운영체제: Ubuntu 12.5-0ubuntu0.20.04.1
+- 시스템 설정 : 기본 메모리(4096MB), 부팅 순서(플로피 디스크, 광 디스크, 하드 디스크), 가속(VT-X/AMD-V, 네스티드 페이징, KVM 반가상화)
+
+#### Eclipse 
+- Eclipse IDE for Enterprise Java Developers (includes Incubating components)
+- Version: 2020-09 (4.17.0)
+- Build id: 20200910-1200
+
+#### Java
+- javac 11.0.9.1
+- openjdk 11.0.9.1 2020-11-04
+- openJDK Runtime Environment (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04)
+- OpenJDK 64-Bit Server VM (build 11.0.9.1+1-Ubuntu-0ubuntu1.20.04)
+
