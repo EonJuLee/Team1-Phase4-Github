@@ -53,6 +53,7 @@ public void printTable(Connection conn, String q, JspWriter out){
 		for(int i=1;i<=sz;i++){
 			out.println("<th>"+rsmd.getColumnName(i)+"</th>");
 		}
+		//temp
 		while(rs.next()){
 			out.println("<tr>");
 			for(int i=1;i<=sz;i++){
