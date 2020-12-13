@@ -1,18 +1,17 @@
-# Team1-Phase4-Github
+## Summary
 COMP322002-Introduction to Database-Term Project : Eonju Lee, Jeon sungyoon
-Team1-Phase4-Movie_Website_Construction
 
 * This is github repository for team 1 website
 * Please check Team1-Phase4-User_Manual.pdf for more information
 
-# Page Descriptions
-* Welcome Page
+## Page Descriptions
+### Welcome Page
 - Sign In 
 : 로그인, 아이디와 비밀번호를 입력하여 로그인을 시도할 수 있음
 - Sign Up 
 : 회원가입, 회원 가입 시에는 사용자에게 필수 정보만을 입력받아 계정을 생성함. 계정 생성과 함께 기본적인 멤버십을 부여하기 위해 멤버십 계정도 함께 생성한다
 
-* Main Page - 로그인 이후 메인 기능 화면
+### Main Page - 로그인 이후 메인 기능 화면
 - Account Page
 : 계정 관련 기능 화면(Account Page)으로 이동함
 - Movie Page
@@ -24,7 +23,7 @@ Team1-Phase4-Movie_Website_Construction
 - Administrator Page
 : 관리자 관련 기능 화면(Administator Page)으로 이동함. 현재 로그인한 사용자가 관리자인 경우만 이 메뉴를 가시화함
 
-* Account Page - 계정 관련 기능 화면
+### Account Page - 계정 관련 기능 화면
 - Edit Account Profile
 : 사용자 정보를 출력하고 수정함, 필수 정보는 스킵할 수 없으며(빈 정보 제공 시 오류메세지 생성), 정보 제공을 스킵할 경우 기존 정보는 수정되지 않음
 - Edit Password
@@ -34,7 +33,7 @@ Team1-Phase4-Movie_Website_Construction
 - Back to Previous Page
 : 계정 관련 기능 페이지를 종료하고, 메인 페이지(Main Page)로 이동함
 
-* Movie Page - 영상물 관련 기능 화면
+### Movie Page - 영상물 관련 기능 화면
 - Movie List
 : 영상물 릴레이션의 모든 정보를 출력함. 출력된 영상물의 View Detail을 클릭하여 영상물의 상세 정보를 확인할 수 있음 
 - Movie Search
@@ -44,7 +43,7 @@ Team1-Phase4-Movie_Website_Construction
 - Back to Previous Page
 : 영화 관련 기능 페이지를 종료하고, 메인 페이지(Main Page)로 이동함
 
-* Rating Page - 영상물 평가 관련 기능 화면
+### Rating Page - 영상물 평가 관련 기능 화면
 - View my Ratings
 : 사용자가 평가한 영상물의 정보(영상물 제목과 자신이 평가한 평점)를 확인할 수 있음
 - Back to Previous Page
@@ -52,7 +51,7 @@ Team1-Phase4-Movie_Website_Construction
 - (Admin) View all ratings
 : 현재 로그인한 사용자가 관리자인 경우 이 메뉴를 가시화함. 데이터베이스에 저장된 영상물 평가 정보(영상물 제목, 평가자, 평점)를 모두 가져와서 출력함
 
-* Administrator Page - 관리자 관련 기능 화면
+### Admin Page - 관리자 관련 기능 화면
 - Movie & Version Management
 : 전체 영상물 목록을 출력함. 새 영상물을 추가하거나, 기존 영상물의 정보를 변경하거나, 삭제할 수 있음.  정보 변경 시 필수 정보를 스킵할 수 없음
 : 영상물의 Version Info를 클릭하면 해당하는 영상물의 버전 정보를 출력함. 마찬가지로 버전 정보를 변경하거나 삭제할 수 있으며 영상물의 새 국가버전을 등록할 수 있음
@@ -62,4 +61,4 @@ Team1-Phase4-Movie_Website_Construction
 - Back to Previous Page
 : 관리자 관련 기능 페이지를 종료하고, 메인 페이지(Main Page)로 이동함
 
-# Development Environment
+## Development Environment
